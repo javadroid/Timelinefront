@@ -1,0 +1,16 @@
+<div class="field">
+  <label class="label">{{label}}</label>
+<div class="control">
+  <input [type]="type" [ngClass]="{'is-danger': showErrors()}"  class="input" [formControl]="control" />
+</div>
+<ng-container  *ngIf="showErrors()">
+
+    <div class="help is-danger" *ngIf="control.errors?.['required']">
+      Requried
+    </div>
+
+    <div class="help is-danger" *ngIf="control.errors?.['pattern']">
+      Invalid Format
+    </div>
+  </ng-container>
+</div>

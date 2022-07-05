@@ -1,0 +1,24 @@
+<div class="column">
+  <form (ngSubmit)="onSubmit()" [formGroup]="timeFrom">
+    <app-input disable label="id" [control]="timeFrom.controls.id"></app-input>
+    <app-input label="Username" [control]="timeFrom.controls.username"></app-input>
+    <app-input label="Personnel" [control]="timeFrom.controls.personnelType"></app-input>
+    <app-input label="Phone Number" [control]="timeFrom.controls.phonenumber"></app-input>
+    <app-input label="Email" [control]="timeFrom.controls.email"></app-input>
+    <app-input label="Gender" [control]="timeFrom.controls.gender"></app-input>
+    <app-input label="Address" [control]="timeFrom.controls.address"></app-input>
+    <app-input label="Password" [control]="timeFrom.controls.password"></app-input>
+    <app-input label="Image" [control]="timeFrom.controls.image"></app-input>
+
+        {{timeFrom.errors?.['username']}}
+    <div class="buttons">
+      <button [disabled]="!timeFrom.valid" class="button is-primary" type="submit">Submit</button>
+      <button (click)="rest()" class="button is-warning" type="button">Reset</button>
+      <button (click)="findOne()" class="button is-warning" type="button">fetch by Id</button>
+      <button (click)="find()" class="button is-warning" type="button">fetch all</button>
+      <button (click)="update()" class="button is-warning" type="button">Update</button>
+      <button (click)="delete()" class="button is-warning" type="button">delete</button>
+    </div>
+  </form>
+  {{data | json}}
+</div>

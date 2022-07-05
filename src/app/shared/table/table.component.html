@@ -1,0 +1,27 @@
+<table [ngClass]="classNames" class="ui table">
+  <thead>
+    <tr>
+      <th *ngFor="let head of header ">
+        {{head.label}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container  *ngIf="table">
+asdfdsfas {{table}}
+    </ng-container>
+
+    <tr *ngFor="let d of data">
+      <td *ngFor="let head of header ">
+        {{d[head.key]}}
+      </td>
+      <td>
+        <div (click)="emitEdit2.emit(d)">
+          <button (click)="emitEdit.emit(d)" >Edit</button>
+        </div>
+
+        <button (click)="emitDelete.emit(d?._id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
