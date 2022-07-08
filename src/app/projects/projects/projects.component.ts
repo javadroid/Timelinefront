@@ -108,7 +108,7 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     const a = this.http.find('project').subscribe((res) => {
       this.data = res;
-      console.log(res);
+      
     });
   }
 }

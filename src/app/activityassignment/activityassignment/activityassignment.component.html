@@ -1,0 +1,35 @@
+<button class="ui button" (click)="onClick()">ADD</button>
+
+<app-modal (close)="onClick()" *ngIf="modal">
+  <div modalTitle > Activity Assignment </div>
+  <p>inputs fields</p>
+ <div modalButton> <button (click)="onSubmit()" class="ui button">Save</button>
+ </div>
+ <div modalInput>
+
+  <app-input label="ActivityId" [control]="activityassignmentForm.controls.ActivityId"></app-input>
+  <app-input [type]="'date'" label="Dateassigned" [control]="activityassignmentForm.controls.Dateassigned"></app-input> 
+  <app-input [type]="'date'" label="Datedone" [control]="activityassignmentForm.controls.Datedone"></app-input> 
+ </div> 
+</app-modal>
+
+<app-modal (close)="onClick2()" *ngIf="modal2">
+  <div modalTitle > Activity Assignment </div>
+  <p>inputs fields</p>
+ <div modalButton> <button (click)="onUpdate()" class="ui button">Update</button>
+ </div>
+ <div modalInput>
+
+  <app-input label="ActivityId" [control]="activityassignmentForm.controls.ActivityId"></app-input>
+ <app-input [type]="'date'" label="Dateassigned" [control]="activityassignmentForm.controls.Dateassigned"></app-input>
+  <app-input [type]="'date'" label="Datedone" [control]="activityassignmentForm.controls.Datedone"></app-input>
+  
+ </div>
+</app-modal>
+
+<app-table classNames="striped celled"
+(emitEdit2)="onEdit($event)"
+
+[data]="data" [header]="header"
+(emitDelete)='onDelete($event)'>
+</app-table>

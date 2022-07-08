@@ -1,15 +1,12 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  selector: 'app-crud',
+  templateUrl: './crud.component.html',
+  styleUrls: ['./crud.component.css']
 })
-export class ModalComponent implements OnInit {
-  @Output() close= new EventEmitter();
-
-
+export class CrudComponent implements OnInit {
+@Output() close= new EventEmitter();
   constructor(private el:ElementRef) {
    // console.log(el.nativeElement)
    }
@@ -24,4 +21,6 @@ export class ModalComponent implements OnInit {
   onCloseClick(){
 this.close.emit()
   }
+
+
 }
