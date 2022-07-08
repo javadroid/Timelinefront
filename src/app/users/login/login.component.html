@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+  <app-input disable label="username" [control]="loginForm.controls.username"></app-input>
+  <app-input [type]="'password'" label="password" [control]="loginForm.controls.password"></app-input>
+
+
+      {{loginForm.errors?.['username']}}
+  <div class="buttons">
+    <button [disabled]="!loginForm.valid" class="button is-primary" type="submit">Submit</button>
+    <button (click)="rest()" class="button is-warning" type="button">Reset</button>
+
+  </div>
+</form>

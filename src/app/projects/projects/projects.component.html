@@ -13,6 +13,7 @@
   <app-input [type]="'date'" label="StartDate" [control]="projectForm.controls.startDate"></app-input>
   <app-input [type]="'date'" label="EndDate" [control]="projectForm.controls.endDate"></app-input>
  </div>
+ 
 </app-modal>
 
 <app-modal (close)="onClick2()" *ngIf="modal2">
@@ -31,7 +32,7 @@
 </app-modal>
 
 <app-table classNames="striped celled"
-(emitEdit2)="onEdit($event)"
+(emitEdit)="onEdit($event)"
 
 [data]="data" [header]="header"
 (emitDelete)='onDelete($event)'>

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { map, Observable } from 'rxjs';
 import { TimelineApiService } from 'src/app/shared/timeline-api.service';
+import { UniqueUser } from '../validator/unique-user';
 
 
 @Component({
@@ -14,10 +15,10 @@ export class UsersComponent implements OnInit {
   data=[]as any
   timeFrom=new FormGroup({
   //users form
-    username: new FormControl('',[Validators.required,/**  Validators.pattern(/\s/)***/]),
+    username: new FormControl('',[Validators.required],[this.unique.validate]),
     personnelType: new FormControl('',[Validators.required,  ]),
-    phonenumber: new FormControl(Number(''),[Validators.required,]),
-    email: new FormControl('',[Validators.required, ]),
+    phonenumber: new FormControl(Number(''),[Validators.required,],[this.unique.validatePhone]),
+    email: new FormControl('',[Validators.required, ],[this.unique.validateEmail]),
     gender: new FormControl('',[Validators.required]),
     address: new FormControl('',[Validators.required]),
     password: new FormControl('',[Validators.required]),
@@ -26,6 +27,8 @@ export class UsersComponent implements OnInit {
 
 
 })
+
+
 
 onSubmit(){
   if(!this.timeFrom.value){
@@ -95,7 +98,7 @@ delete(){
   })
 
 }
-  constructor(private http:TimelineApiService) { }
+  constructor(private http:TimelineApiService,private unique: UniqueUser) { }
 
   ngOnInit(): void {
 

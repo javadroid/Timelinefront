@@ -12,5 +12,9 @@
     <div class="help is-danger" *ngIf="control.errors?.['pattern']">
       Invalid Format
     </div>
+
+    <div *ngIf="control?.errors.UniqueUsername">
+      ({{control?.value}}) already exist
+    </div>
   </ng-container>
 </div>

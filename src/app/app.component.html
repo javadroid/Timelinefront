@@ -5,9 +5,23 @@
     <a routerLinkActive="active" class="item" routerLink="/log">log</a>
     <a routerLinkActive="active" class="item" routerLink="/projectpersonnels">project-personnels</a>
     <a routerLinkActive="active" class="item" routerLink="/activityassignment">activity-assignment</a>
+    <div class="right menu">
+      <ng-container *ngIf="signedIn$ | async">
+        <a routerLinkActive="active" class="item"  routerLink="users/project">Project</a>
+        <a routerLinkActive="active" class="item" routerLink="users/activity">Activity</a>
+        <a routerLinkActive="active" class="item" routerLink="users/signout">Sign Out</a>
+      </ng-container>
+      <ng-container *ngIf="!(signedIn$ |async)">
+        <a routerLinkActive="active" class="item" routerLink="users/login">Login</a>
+      </ng-container>
+
+
+
+    </div>
   </div>
   <div class="ui divider"></div>
   <div class="ui segment">
+
     <router-outlet></router-outlet>
   </div>
 
