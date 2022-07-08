@@ -1,0 +1,36 @@
+<button class="ui button" (click)="onClick()">ADD</button>
+
+<app-modal (close)="onClick()" *ngIf="modal">
+  <div modalTitle > Project Personnels</div>
+  <p>inputs fields</p>
+ <div modalButton> <button (click)="onSubmit()" class="ui button">Save</button>
+ </div>
+ <div modalInput>
+
+  <app-input label="Name" [control]="projectpersonnelsForm.controls.name"></app-input>
+  <app-input label="Project" [control]="projectpersonnelsForm.controls.ProjectId"></app-input>
+  <app-input label="PersonnelType" [control]="projectpersonnelsForm.controls.Personneltype"></app-input>
+
+ </div>
+</app-modal>
+
+<app-modal (close)="onClick2()" *ngIf="modal2">
+  <div modalTitle > Project Personnels</div>
+  <p>inputs fields</p>
+ <div modalButton> <button (click)="onUpdate()" class="ui button">Update</button>
+ </div>
+ <div modalInput>
+
+  <app-input label="Name" [control]="projectpersonnelsForm.controls.name"></app-input>
+  <app-input label="Project" [control]="projectpersonnelsForm.controls.ProjectId"></app-input> 
+  <app-input label="PersonnelType" [control]="projectpersonnelsForm.controls.Personneltype"></app-input> 
+  
+ </div>
+</app-modal>
+
+<app-table classNames="striped celled"
+(emitEdit2)="onEdit($event)"
+
+[data]="data" [header]="header"
+(emitDelete)='onDelete($event)'>
+</app-table>
