@@ -10,15 +10,16 @@ exports.UsersComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var UsersComponent = /** @class */ (function () {
-    function UsersComponent(http) {
+    function UsersComponent(http, unique) {
         this.http = http;
+        this.unique = unique;
         this.data = [];
         this.timeFrom = new forms_1.FormGroup({
             //users form
-            username: new forms_1.FormControl('', [forms_1.Validators.required,]),
+            username: new forms_1.FormControl('', [forms_1.Validators.required], [this.unique.validate]),
             personnelType: new forms_1.FormControl('', [forms_1.Validators.required,]),
-            phonenumber: new forms_1.FormControl(Number(''), [forms_1.Validators.required,]),
-            email: new forms_1.FormControl('', [forms_1.Validators.required,]),
+            phonenumber: new forms_1.FormControl(Number(''), [forms_1.Validators.required,], [this.unique.validatePhone]),
+            email: new forms_1.FormControl('', [forms_1.Validators.required,], [this.unique.validateEmail]),
             gender: new forms_1.FormControl('', [forms_1.Validators.required]),
             address: new forms_1.FormControl('', [forms_1.Validators.required]),
             password: new forms_1.FormControl('', [forms_1.Validators.required]),

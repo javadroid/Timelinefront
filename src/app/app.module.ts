@@ -7,20 +7,17 @@ import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users/users.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { InputComponent } from './shared/input/input.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersModule } from './users/users.module';
 import { SharedModule } from './shared/shared.module';
+import { AuthHttp } from './users/auth-http';
 
 @NgModule({
   declarations: [
     AppComponent,
-
-
-
-
-    HomeComponent,
+   HomeComponent,
 
     NotFoundComponent
   ],
