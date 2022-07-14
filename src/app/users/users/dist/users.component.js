@@ -34,7 +34,7 @@ var UsersComponent = /** @class */ (function () {
         if (!this.timeFrom.value) {
             return;
         }
-        this.http.create(this.timeFrom.value, 'users').subscribe(function (res) {
+        this.http.register(this.timeFrom.value, 'users').subscribe(function (res) {
             console.log(res);
             _this.timeFrom.reset();
             _this.router.navigate(['/login']);
@@ -53,11 +53,12 @@ var UsersComponent = /** @class */ (function () {
     };
     UsersComponent.prototype.findOne = function () {
         var _this = this;
-        if (!this.timeFrom.value.id) {
+        if (!this.timeFrom.value.username) {
+            console.log(this.timeFrom.value.username);
             console.log("not found");
             return;
         } //console.log((this.timeFrom.value.id) )
-        var a = this.http.findOne(this.timeFrom.value.id, 'users').subscribe(function (res) {
+        var a = this.http.findOne(this.timeFrom.value.username, 'users').subscribe(function (res) {
             console.log(res);
             _this.timeFrom.setValue({
                 address: res[0].address,
