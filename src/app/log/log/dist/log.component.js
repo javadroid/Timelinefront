@@ -18,42 +18,42 @@ var LogComponent = /** @class */ (function () {
         this.main = [];
         this.dateD = 0;
         this.header = [
-            { key: 'name', label: 'Name' },
-            { key: 'description', label: 'Description' },
-            { key: 'duration', label: 'Duration (Days)' },
-            
+            { key: 'project', label: 'Project' },
+            { key: 'activity', label: 'Activity' },
+            { key: 'user', label: 'User' },
+            { key: 'bug', label: 'Bug' },
+            { key: 'reporter', label: 'Reporter' },
+            { key: 'reportedat', label: 'ReportedAt (Date)' },
+            { key: 'assignedto', label: 'AssignedTo' },
+            { key: 'dateresolved', label: 'DateResolved (Date)' },
+            { key: 'response', label: 'Response' },
+            { key: 'responseconfirm', label: 'ResponseConfirm' },
+            { key: 'responseconfirmdate', label: 'ResponseConfirmDate (Date)' },
         ];
-        this.logForm = new forms_1.LogGroup({
+        this.logForm = new forms_1.FormGroup({
             //users form
-            name: new forms_1.FormControl('', [
-                forms_1.Validators.required /**  Validators.pattern(/\s/)***/,
-            ]),
-            description: new forms_1.FormControl('', [forms_1.Validators.required]),
-            cost: new forms_1.FormControl(Number(''), [forms_1.Validators.required]),
-            startDate: new forms_1.FormControl('', [forms_1.Validators.required]),
-            endDate: new forms_1.FormControl('', [forms_1.Validators.required]),
-            duration: new forms_1.FormControl()
+            projectId: new forms_1.FormControl('', [forms_1.Validators.required]),
+            ActivityId: new forms_1.FormControl('', [forms_1.Validators.required]),
+            UserId: new forms_1.FormControl('', [forms_1.Validators.required]),
+            Bug: new forms_1.FormControl('', [forms_1.Validators.required]),
+            ReporterId: new forms_1.FormControl('', [forms_1.Validators.required]),
+            ReportedAt: new forms_1.FormControl('', [forms_1.Validators.required]),
+            AssignedTo: new forms_1.FormControl('', [forms_1.Validators.required]),
+            DateResolved: new forms_1.FormControl('', [forms_1.Validators.required]),
+            Response: new forms_1.FormControl('', [forms_1.Validators.required]),
+            ResponseConfirm: new forms_1.FormControl('', [forms_1.Validators.required]),
+            ResponseConfirmDate: new forms_1.FormControl('', [forms_1.Validators.required])
         });
     }
     LogComponent.prototype.test = function () { };
     LogComponent.prototype.onSubmit = function () {
         var _this = this;
-        var s = this.logForm.value.startDate;
-        var e = this.logForm.value.endDate;
-        var start = new Date("" + s);
-        var end = new Date("" + e);
-        if (this.logForm.invalid) {
-            return;
-        }
-        this.dateD = Number(start.getDate()) - Number(end.getDate());
-        this.logForm.patchValue({
-            duration: Math.abs(this.dateD)
-        });
-        this.http.create(this.logForm.value, 'project').subscribe(function (res) {
+        this.http.create(this.logForm.value, 'log').subscribe(function (res) {
             _this.modal = !_this.modal;
             console.log(res);
             _this.logForm.reset();
             window.location.reload();
+            console.log(log);
         });
     };
     LogComponent.prototype.onClick = function () {
@@ -64,18 +64,6 @@ var LogComponent = /** @class */ (function () {
     };
     LogComponent.prototype.onUpdate = function () {
         var _a;
-        var s = this.logForm.value.startDate;
-        var e = this.logForm.value.endDate;
-        var start = new Date("" + s);
-        var end = new Date("" + e);
-        if (!this.logForm.valid && !this.main) {
-            console.log('not found');
-            return;
-        }
-        this.dateD = Number(start.getDate()) - Number(end.getDate());
-        this.logForm.patchValue({
-            duration: Math.abs(this.dateD)
-        });
         var a = this.http
             .update((_a = this.main) === null || _a === void 0 ? void 0 : _a._id, [this.logForm.value], 'log')
             .subscribe(function (res) { });
@@ -84,22 +72,30 @@ var LogComponent = /** @class */ (function () {
     };
     LogComponent.prototype.onEdit = function (value) {
         this.modal2 = !this.modal2;
+        console.log("LogForm Value", this.logForm.value);
+        this.logForm.patchValue(value);
         this.logForm.setValue({
-            name: value === null || value === void 0 ? void 0 : value.name,
-            description: value === null || value === void 0 ? void 0 : value.description,
-            cost: value === null || value === void 0 ? void 0 : value.cost,
-            startDate: value === null || value === void 0 ? void 0 : value.startDate,
-            endDate: value === null || value === void 0 ? void 0 : value.endDate,
-            duration: value === null || value === void 0 ? void 0 : value.duration
+            projectId: value === null || value === void 0 ? void 0 : value.projectId,
+            ActivityId: value === null || value === void 0 ? void 0 : value.ActivityId,
+            UserId: value === null || value === void 0 ? void 0 : value.UserId,
+            Bug: value === null || value === void 0 ? void 0 : value.Bug,
+            ReporterId: value === null || value === void 0 ? void 0 : value.ReporterId,
+            ReportedAt: value === null || value === void 0 ? void 0 : value.ReportedAt,
+            AssignedTo: value === null || value === void 0 ? void 0 : value.AssignedTo,
+            DateResolved: value === null || value === void 0 ? void 0 : value.DateResolved,
+            Response: value === null || value === void 0 ? void 0 : value.Response,
+            ResponseConfirm: value === null || value === void 0 ? void 0 : value.ResponseConfirm,
+            ResponseConfirmDate: value === null || value === void 0 ? void 0 : value.ResponseConfirmDate
         });
         this.main = value;
+        console.log("LogForm Value ", this.logForm.value);
     };
     LogComponent.prototype.onDelete = function (value) {
         if (!value) {
             console.log('not found');
             return;
         } //console.log(this.http.findOne(this.projectForm.value.id) )
-        this.http["delete"](value, 'project').subscribe(function (res) { });
+        this.http["delete"](value, 'log').subscribe(function (res) { });
         window.location.reload();
     };
     LogComponent.prototype.ngOnInit = function () {
@@ -119,3 +115,6 @@ var LogComponent = /** @class */ (function () {
     return LogComponent;
 }());
 exports.LogComponent = LogComponent;
+function log(log) {
+    throw new Error('Function not implemented.');
+}

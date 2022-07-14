@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { map, Observable } from 'rxjs';
-import { TimelineApiService } from 'src/app/shared/timeline-api.service';
+import { TimelineApiService } from 'src/app/shared/services/timeline-api.service';
 import { UniqueUser } from '../validator/unique-user';
 
 
@@ -13,6 +14,7 @@ import { UniqueUser } from '../validator/unique-user';
 })
 export class UsersComponent implements OnInit {
   data=[]as any
+  Roles: any = ['Admin', 'Lead', 'User'];
   timeFrom=new FormGroup({
   //users form
     username: new FormControl('',[Validators.required],[this.unique.validate]),
@@ -37,6 +39,7 @@ onSubmit(){
     console.log(res)
 
     this.timeFrom.reset()
+    this.router.navigate(['/login'])
   })
 
 
@@ -98,7 +101,7 @@ delete(){
   })
 
 }
-  constructor(private http:TimelineApiService,private unique: UniqueUser) { }
+  constructor(private http:TimelineApiService,private unique: UniqueUser,private router: Router) { }
 
   ngOnInit(): void {
 

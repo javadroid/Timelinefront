@@ -8,12 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
+var rxjs_1 = require("rxjs");
 var AppComponent = /** @class */ (function () {
-    function AppComponent(auth) {
+    function AppComponent(router, auth) {
+        this.router = router;
         this.auth = auth;
         this.title = 'Timeline';
+        this.TOKEN_NAME = 'profanis_auth';
         this.signedIn$ = this.auth.signedIn$;
     }
+    AppComponent.prototype.logout = function () {
+        localStorage.removeItem(this.TOKEN_NAME);
+        //window.location.reload()
+        this.signedIn$ = new rxjs_1.BehaviorSubject(false);
+    };
     AppComponent.prototype.ngOnInit = function () {
         this.auth.checkAuth().subscribe(function () { });
     };

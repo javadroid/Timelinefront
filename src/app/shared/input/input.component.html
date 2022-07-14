@@ -1,20 +1,23 @@
-<div class="field">
+<ng-container class="field">
   <label class="label">{{label}}</label>
-<div class="control">
-  <input [type]="type" [ngClass]="{'is-danger': showErrors()}"  class="input" [formControl]="control" />
-</div>
-<ng-container  *ngIf="showErrors()">
+<ng-container class="control">
 
-    <div class="help is-danger" *ngIf="control.errors?.['required']">
+  <mat-form-field class="example-full-width">
+    <input matInput  [placeholder]="placeholder" [type]="type" [ngClass]="{'is-danger': showErrors()}"  [formControl]="control" />
+    </mat-form-field>
+</ng-container>
+<div  *ngIf="showErrors()">
+
+    <ng-container class="help is-danger" *ngIf="control.errors?.['required']">
       Requried
-    </div>
+    </ng-container>
 
-    <div class="help is-danger" *ngIf="control.errors?.['pattern']">
+    <ng-container class="help is-danger" *ngIf="control.errors?.['pattern']">
       Invalid Format
-    </div>
+    </ng-container>
 
-    <div *ngIf="control?.errors.UniqueUsername">
+    <ng-container *ngIf="control?.errors.UniqueUsername">
       ({{control?.value}}) already exist
-    </div>
-  </ng-container>
-</div>
+    </ng-container>
+  </div>
+</ng-container>

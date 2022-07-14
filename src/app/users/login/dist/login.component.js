@@ -10,26 +10,36 @@ exports.LoginComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(http) {
+    function LoginComponent(http, router) {
         this.http = http;
+        this.router = router;
+        this.TOKEN_NAME = 'profanis_auth';
         this.loginForm = new forms_1.FormGroup({
             username: new forms_1.FormControl('', forms_1.Validators.required),
             password: new forms_1.FormControl('', (forms_1.Validators.required))
         });
     }
     LoginComponent.prototype.onSubmit = function () {
+        var _this = this;
         if (!this.loginForm.value.password || !this.loginForm.value.username) {
             return;
         }
-        console.log(this.loginForm.value);
         return this.http.signIn(this.loginForm.value).subscribe(function (res) {
             console.log(res);
+            localStorage.setItem(_this.TOKEN_NAME, res.token);
+            _this.router.navigate(['./users/dashboard']);
         });
     };
+    Object.defineProperty(LoginComponent.prototype, "token", {
+        get: function () {
+            return localStorage.getItem(this.TOKEN_NAME);
+        },
+        enumerable: false,
+        configurable: true
+    });
     LoginComponent.prototype.rest = function () {
     };
     LoginComponent.prototype.ngOnInit = function () {
-        this.http.checkAuth().subscribe(function () { });
     };
     LoginComponent = __decorate([
         core_1.Component({

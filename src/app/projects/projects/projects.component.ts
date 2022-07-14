@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TimelineApiService } from 'src/app/shared/timeline-api.service';
+import { TimelineApiService } from 'src/app/shared/services/timeline-api.service';
 
 @Component({
   selector: 'app-projects',
@@ -108,7 +108,7 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     const a = this.http.find('project').subscribe((res) => {
       this.data = res;
-      
+
     });
   }
 }

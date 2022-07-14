@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TimelineApiService } from 'src/app/shared/timeline-api.service';
+import { TimelineApiService } from 'src/app/shared/services/timeline-api.service';
 
 @Component({
   selector: 'app-log',
@@ -26,7 +26,7 @@ export class LogComponent implements OnInit {
     { key: 'response', label: 'Response' },
     { key: 'responseconfirm', label: 'ResponseConfirm' },
     { key: 'responseconfirmdate', label: 'ResponseConfirmDate (Date)' },
-    
+
   ];
 
   logForm = new FormGroup({
@@ -54,7 +54,7 @@ export class LogComponent implements OnInit {
       window.location.reload();
       console.log(log);
     });
-  } 
+  }
 
   onClick() {
     this.modal = !this.modal;

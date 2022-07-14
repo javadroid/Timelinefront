@@ -1,4 +1,5 @@
-<button class="ui button" (click)="onClick()">ADD</button>
+
+
 
 <app-modal (close)="onClick()" *ngIf="modal">
   <div modalTitle > Projects </div>
@@ -13,7 +14,7 @@
   <app-input [type]="'date'" label="StartDate" [control]="projectForm.controls.startDate"></app-input>
   <app-input [type]="'date'" label="EndDate" [control]="projectForm.controls.endDate"></app-input>
  </div>
- 
+
 </app-modal>
 
 <app-modal (close)="onClick2()" *ngIf="modal2">

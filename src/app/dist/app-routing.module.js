@@ -9,14 +9,14 @@ exports.__esModule = true;
 exports.AppRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var home_component_1 = require("./home/home.component");
 var not_found_component_1 = require("./not-found/not-found.component");
-var routes = [
-    { path: '', component: home_component_1.HomeComponent },
-    { path: 'users', loadChildren: function () { return Promise.resolve().then(function () { return require('./users/users.module'); }).then(function (m) { return m.UsersModule; }); } },
+var login_component_1 = require("./users/login/login.component");
+var routes = [{ path: '', pathMatch: 'full', redirectTo: 'login' },
+    { path: 'login', component: login_component_1.LoginComponent }, { path: 'users', loadChildren: function () { return Promise.resolve().then(function () { return require('./users/users.module'); }).then(function (m) { return m.UsersModule; }); } },
     { path: 'projects', loadChildren: function () { return Promise.resolve().then(function () { return require('./projects/projects.module'); }).then(function (m) { return m.ProjectsModule; }); } },
-    { path: '**', component: not_found_component_1.NotFoundComponent }
-];
+    { path: 'log', loadChildren: function () { return Promise.resolve().then(function () { return require('./log/log.module'); }).then(function (m) { return m.LogModule; }); } },
+    { path: 'projectpersonnels', loadChildren: function () { return Promise.resolve().then(function () { return require('./projectpersonnels/projectpersonnels.module'); }).then(function (m) { return m.ProjectPersonnelsModule; }); } },
+    { path: 'activityassignment', loadChildren: function () { return Promise.resolve().then(function () { return require('./activityassignment/activityassignment.module'); }).then(function (m) { return m.ActivityAssignmentModule; }); } }, { path: '**', component: not_found_component_1.NotFoundComponent }];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }

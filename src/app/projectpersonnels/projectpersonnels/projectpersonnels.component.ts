@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TimelineApiService } from 'src/app/shared/timeline-api.service';
+import { TimelineApiService } from 'src/app/shared/services/timeline-api.service';
 
 @Component({
   selector: 'app-projectpersonnels',
@@ -57,7 +57,7 @@ export class ProjectPersonnelsComponent implements OnInit {
     this.projectpersonnelsForm.setValue({
       name: value?.name,
       ProjectId : value?.ProjectId,
-      Personneltype: value?.Personneltype, 
+      Personneltype: value?.Personneltype,
     });
     this.main = value;
   }

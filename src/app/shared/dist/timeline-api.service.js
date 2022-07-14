@@ -7,12 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.TimelineApiService = void 0;
+var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
+var moment = require("moment");
 var rxjs_1 = require("rxjs");
 var TimelineApiService = /** @class */ (function () {
     function TimelineApiService(http) {
         this.http = http;
         this.signedIn$ = new rxjs_1.BehaviorSubject(false);
+        this.httpOptions = {
+            headers: new http_1.HttpHeaders({ 'Content-Type': 'application/json' })
+        };
     }
     TimelineApiService.prototype.usernammeAvailable = function (username) {
         return this.http.get('http://localhost:3000/api/users/' +
@@ -38,14 +43,15 @@ var TimelineApiService = /** @class */ (function () {
         return this.http["delete"]('http://localhost:3000/api/' + rs + '/' + id);
     };
     TimelineApiService.prototype.checkAuth = function () {
+        var _this = this;
         return this.http.get('http://localhost:3000/api/users/profile').pipe(rxjs_1.tap(function (res) {
-            // this.signedIn$.next(authenticated)
-            console.log(res);
-        }));
+            _this.signedIn$.next(res.authenticated);
+            console.log(res.authenticated);
+        }), rxjs_1.catchError(function () { return ' authentication:false'; }));
     };
     TimelineApiService.prototype.create = function (details, rs) {
         var _this = this;
-        return this.http.post('http://localhost:3000/api/' + rs, details, { withCredentials: true }).pipe(rxjs_1.tap(function () {
+        return this.http.post('http://localhost:3000/api/' + rs, details).pipe(rxjs_1.tap(function () {
             _this.signedIn$.next(true);
         }));
     };
@@ -56,10 +62,27 @@ var TimelineApiService = /** @class */ (function () {
         }));
     };
     TimelineApiService.prototype.signOut = function () {
-        var _this = this;
-        return this.http.post('http://localhost:3000/api/users/signout', {}).pipe(rxjs_1.tap(function () {
-            _this.signedIn$.next(false);
-        }));
+        localStorage.removeItem('token');
+        localStorage.removeItem('expires');
+    };
+    TimelineApiService.prototype.setLocalStorage = function (res) {
+        var expires = moment().add(res.expiresIn);
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('expires', JSON.stringify(expires.valueOf()));
+    };
+    TimelineApiService.prototype.getExpiration = function () {
+        var expiration = localStorage.getItem('expires');
+        if (expiration) {
+            var expiresAt = JSON.parse(expiration);
+            return moment(expiresAt);
+        }
+        return;
+    };
+    TimelineApiService.prototype.isLoggedIn = function () {
+        return moment().isBefore(this.getExpiration());
+    };
+    TimelineApiService.prototype.isLoggedOut = function () {
+        return !this.isLoggedIn;
     };
     TimelineApiService = __decorate([
         core_1.Injectable({

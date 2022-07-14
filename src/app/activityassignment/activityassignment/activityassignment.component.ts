@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TimelineApiService } from 'src/app/shared/timeline-api.service';
+import { TimelineApiService } from 'src/app/shared/services/timeline-api.service';
 
 @Component({
   selector: 'app-activityassignment',
@@ -26,9 +26,9 @@ export class ActivityAssignmentComponent implements OnInit {
     Datedone: new FormControl('', [Validators.required]),
     duration: new FormControl(),
   });
-  
-  
-  
+
+
+
 
   test() {}
 

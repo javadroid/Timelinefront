@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.TableComponent = void 0;
 var core_1 = require("@angular/core");
+var table_1 = require("@angular/material/table");
 var TableComponent = /** @class */ (function () {
     function TableComponent() {
         this.table = false;
@@ -17,6 +18,7 @@ var TableComponent = /** @class */ (function () {
         this.emitEdit = new core_1.EventEmitter();
         this.emitEdit2 = new core_1.EventEmitter();
         this.emitDelete = new core_1.EventEmitter();
+        this.dataSource = new table_1.MatTableDataSource(this.data);
     }
     TableComponent.prototype.ngOnInit = function () {
         if (this.data.length > -1) {

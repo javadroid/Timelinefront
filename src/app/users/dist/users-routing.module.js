@@ -9,11 +9,15 @@ exports.__esModule = true;
 exports.UsersRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var dashboard_component_1 = require("./dashboard/dashboard.component");
 var login_component_1 = require("./login/login.component");
+var logout_component_1 = require("./logout/logout.component");
 var users_component_1 = require("./users/users.component");
 var routes = [
     { path: '', component: users_component_1.UsersComponent },
     { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
+    { path: 'logout', component: logout_component_1.LogoutComponent }
 ];
 var UsersRoutingModule = /** @class */ (function () {
     function UsersRoutingModule() {

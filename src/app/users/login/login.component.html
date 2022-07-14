@@ -1,12 +1,20 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-  <app-input disable label="username" [control]="loginForm.controls.username"></app-input>
-  <app-input [type]="'password'" label="password" [control]="loginForm.controls.password"></app-input>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="example-form">
+      <mat-card-content>
+
+          <app-input [placeholder]="'Username'"   [control]="loginForm.controls.username"></app-input>
+         <app-input [placeholder]="'Username'" [type]="'Password'"  [control]="loginForm.controls.password"></app-input>
+
+      </mat-card-content>
+      <button  [disabled]="!loginForm.valid" type="submit" mat-stroked-button color="accent" class="btn-block">Log in</button>
+    </form>
+
+    <a mat-button routerLinkActive="active" class="item"  routerLink="/users">Register</a>
+  </mat-card>
+</div>
 
 
-      {{loginForm.errors?.['username']}}
-  <div class="buttons">
-    <button [disabled]="!loginForm.valid" class="button is-primary" type="submit">Submit</button>
-    <button (click)="rest()" class="button is-warning" type="button">Reset</button>
-
-  </div>
-</form>

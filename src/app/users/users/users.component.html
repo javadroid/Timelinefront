@@ -1,10 +1,42 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+    <form (ngSubmit)="onSubmit()" [formGroup]="timeFrom" class="example-form">
+      <mat-card-content>
+        <app-input [placeholder]="'Username'" [control]="timeFrom.controls.username"></app-input>
+        <app-input [placeholder]="'Email'" [type]="'email'" [control]="timeFrom.controls.email"></app-input>
+        <app-input [placeholder]="'Phone Number'" [type]="'number'" [control]="timeFrom.controls.phonenumber"></app-input>
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a role...</mat-label>
+          <mat-select>
+            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-content>
+    <app-input  [placeholder]="'Gender'" [control]="timeFrom.controls.gender"></app-input>
+    <app-input  [placeholder]="'Address'" [control]="timeFrom.controls.address"></app-input>
+    <app-input [type]="'password'" [placeholder]="'Password'" [control]="timeFrom.controls.password"></app-input>
+    <app-input  [placeholder]="'Image'" [control]="timeFrom.controls.image"></app-input>
+
+      </mat-card-content>
+      <button  [disabled]="!timeFrom.valid" mat-stroked-button color="accent" class="btn-block" type="submit">Register</button>
+      <button (click)="rest()" mat-stroked-button color="accent" class="btn-block" type="button">Reset</button>
+    </form>
+
+  </mat-card>
+</div>
+<!--
 <div class="column">
   <form (ngSubmit)="onSubmit()" [formGroup]="timeFrom">
     <app-input disable label="id" [control]="timeFrom.controls.id"></app-input>
     <app-input label="Username" [control]="timeFrom.controls.username"></app-input>
     <app-input label="Personnel" [control]="timeFrom.controls.personnelType"></app-input>
-    <app-input label="Phone Number" [control]="timeFrom.controls.phonenumber"></app-input>
-    <app-input label="Email" [control]="timeFrom.controls.email"></app-input>
+
+
     <app-input label="Gender" [control]="timeFrom.controls.gender"></app-input>
     <app-input label="Address" [control]="timeFrom.controls.address"></app-input>
     <app-input label="Password" [control]="timeFrom.controls.password"></app-input>
@@ -12,7 +44,7 @@
 
         {{timeFrom.errors?.['username']}}
     <div class="buttons">
-      <button [disabled]="!timeFrom.valid" class="button is-primary" type="submit">Submit</button>
+ <button [disabled]="!timeFrom.valid" class="button is-primary" type="submit">Submit</button>
       <button (click)="rest()" class="button is-warning" type="button">Reset</button>
       <button (click)="findOne()" class="button is-warning" type="button">fetch by Id</button>
       <button (click)="find()" class="button is-warning" type="button">fetch all</button>
@@ -22,4 +54,4 @@
   </form>
   {{data | json}}
   {{timeFrom.errors |json}}
-</div>
+</div> -->

@@ -105,7 +105,6 @@ var ProjectsComponent = /** @class */ (function () {
         var _this = this;
         var a = this.http.find('project').subscribe(function (res) {
             _this.data = res;
-            console.log(res);
         });
     };
     ProjectsComponent = __decorate([

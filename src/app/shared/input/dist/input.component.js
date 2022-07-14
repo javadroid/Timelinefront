@@ -14,6 +14,7 @@ var InputComponent = /** @class */ (function () {
         this.control = new forms_1.FormControl;
         this.label = '';
         this.type = '';
+        this.placeholder = '';
     }
     InputComponent.prototype.ngOnInit = function () {
     };
@@ -30,6 +31,9 @@ var InputComponent = /** @class */ (function () {
     __decorate([
         core_1.Input()
     ], InputComponent.prototype, "type");
+    __decorate([
+        core_1.Input()
+    ], InputComponent.prototype, "placeholder");
     InputComponent = __decorate([
         core_1.Component({
             selector: 'app-input',

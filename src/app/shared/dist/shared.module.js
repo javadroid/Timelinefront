@@ -13,6 +13,13 @@ var input_component_1 = require("./input/input.component");
 var modal_component_1 = require("./modal/modal.component");
 var forms_1 = require("@angular/forms");
 var table_component_1 = require("./table/table.component");
+var input_1 = require("@angular/material/input");
+var form_field_1 = require("@angular/material/form-field");
+var table_1 = require("@angular/material/table");
+var paginator_1 = require("@angular/material/paginator");
+var sort_1 = require("@angular/material/sort");
+var progress_spinner_1 = require("@angular/material/progress-spinner");
+// import {  MatPaginatorModule, MatProgressSpinnerModule, MatSortModule } from "@angular/material";
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -23,9 +30,12 @@ var SharedModule = /** @class */ (function () {
             ],
             imports: [
                 common_1.CommonModule,
-                forms_1.ReactiveFormsModule
+                forms_1.ReactiveFormsModule, input_1.MatInputModule, form_field_1.MatFormFieldModule, table_1.MatTableModule,
+                paginator_1.MatPaginatorModule,
+                sort_1.MatSortModule,
+                progress_spinner_1.MatProgressSpinnerModule
             ],
-            exports: [input_component_1.InputComponent, table_component_1.TableComponent, modal_component_1.ModalComponent]
+            exports: [input_component_1.InputComponent, table_component_1.TableComponent, modal_component_1.ModalComponent, input_1.MatInputModule, form_field_1.MatFormFieldModule,]
         })
     ], SharedModule);
     return SharedModule;

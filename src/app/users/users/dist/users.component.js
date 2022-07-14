@@ -10,10 +10,12 @@ exports.UsersComponent = void 0;
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var UsersComponent = /** @class */ (function () {
-    function UsersComponent(http, unique) {
+    function UsersComponent(http, unique, router) {
         this.http = http;
         this.unique = unique;
+        this.router = router;
         this.data = [];
+        this.Roles = ['Admin', 'Lead', 'User'];
         this.timeFrom = new forms_1.FormGroup({
             //users form
             username: new forms_1.FormControl('', [forms_1.Validators.required], [this.unique.validate]),
@@ -35,6 +37,7 @@ var UsersComponent = /** @class */ (function () {
         this.http.create(this.timeFrom.value, 'users').subscribe(function (res) {
             console.log(res);
             _this.timeFrom.reset();
+            _this.router.navigate(['/login']);
         });
     };
     UsersComponent.prototype.rest = function () {

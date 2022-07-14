@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects/projects.component';
@@ -9,6 +10,15 @@ import { ModalComponent } from '../shared/modal/modal.component';
 import { InputComponent } from '../shared/input/input.component';
 
 
+
+import { MatSliderModule } from '@angular/material/slider';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { AngularMaterialModule } from '../angular-material-module/angular-material-module.module';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsersRoutingModule } from '../users/users-routing.module';
+
+
 @NgModule({
   declarations: [
     ProjectsComponent,
@@ -16,7 +26,12 @@ import { InputComponent } from '../shared/input/input.component';
   ],
   imports: [
     CommonModule,
-    ProjectsRoutingModule,SharedModule
-  ]
+    ProjectsRoutingModule,SharedModule,
+    FormsModule,
+    MatSliderModule,
+    FlexLayoutModule,
+    AngularMaterialModule,
+    UsersRoutingModule,ReactiveFormsModule,MatInputModule
+  ],schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProjectsModule { }

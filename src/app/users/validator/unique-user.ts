@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AbstractControl, AsyncValidator, FormControl, ValidationErrors } from "@angular/forms";
 import { catchError, map, Observable, of } from "rxjs";
-import { TimelineApiService } from "src/app/shared/timeline-api.service";
+import { TimelineApiService } from "src/app/shared/services/timeline-api.service";
 
 
 @Injectable({providedIn:'root'})
