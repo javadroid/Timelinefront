@@ -1,4 +1,9 @@
-<button class="ui button" (click)="onClick()">ADD</button>
+<mat-card class="example-card">
+
+  <div class="demo-button-container">
+  <button mat-raised-button (click)="onClick()" class="demo-button">
+    Add Project
+  </button>
 
 <app-modal (close)="onClick()" *ngIf="modal">
   <div modalTitle > Activity Assignment </div>
@@ -8,9 +13,9 @@
  <div modalInput>
 
   <app-input label="ActivityId" [control]="activityassignmentForm.controls.ActivityId"></app-input>
-  <app-input [type]="'date'" label="Dateassigned" [control]="activityassignmentForm.controls.Dateassigned"></app-input> 
-  <app-input [type]="'date'" label="Datedone" [control]="activityassignmentForm.controls.Datedone"></app-input> 
- </div> 
+  <app-input [type]="'date'" label="Dateassigned" [control]="activityassignmentForm.controls.Dateassigned"></app-input>
+  <app-input [type]="'date'" label="Datedone" [control]="activityassignmentForm.controls.Datedone"></app-input>
+ </div>
 </app-modal>
 
 <app-modal (close)="onClick2()" *ngIf="modal2">
@@ -23,7 +28,7 @@
   <app-input label="ActivityId" [control]="activityassignmentForm.controls.ActivityId"></app-input>
  <app-input [type]="'date'" label="Dateassigned" [control]="activityassignmentForm.controls.Dateassigned"></app-input>
   <app-input [type]="'date'" label="Datedone" [control]="activityassignmentForm.controls.Datedone"></app-input>
-  
+
  </div>
 </app-modal>
 
@@ -33,3 +38,5 @@
 [data]="data" [header]="header"
 (emitDelete)='onDelete($event)'>
 </app-table>
+</div>
+</mat-card>

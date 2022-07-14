@@ -6,10 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.ProjectPersonnelsModule = void 0;
-var projectpersonnels_routing_module_1 = require("./projectpersonnels-routing.module");
-var projectpersonnels_component_1 = require("./projectpersonnels/projectpersonnels.component");
-var crud_component_1 = require("./crud/crud.component");
+exports.DashboardModule = void 0;
 var shared_module_1 = require("../shared/shared.module");
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
@@ -19,26 +16,24 @@ var angular_material_module_module_1 = require("../angular-material-module/angul
 var input_1 = require("@angular/material/input");
 var forms_1 = require("@angular/forms");
 var users_routing_module_1 = require("../users/users-routing.module");
-var ProjectPersonnelsModule = /** @class */ (function () {
-    function ProjectPersonnelsModule() {
+var dashboard_routing_module_1 = require("./dashboard-routing.module");
+var DashboardModule = /** @class */ (function () {
+    function DashboardModule() {
     }
-    ProjectPersonnelsModule = __decorate([
+    DashboardModule = __decorate([
         core_1.NgModule({
-            declarations: [
-                projectpersonnels_component_1.ProjectPersonnelsComponent,
-                crud_component_1.CrudComponent
-            ],
+            declarations: [],
             imports: [
                 common_1.CommonModule,
-                projectpersonnels_routing_module_1.ProjectPersonnelsRoutingModule, shared_module_1.SharedModule,
+                dashboard_routing_module_1.DashboardRoutingModule,
                 forms_1.FormsModule,
-                slider_1.MatSliderModule,
-                flex_layout_1.FlexLayoutModule,
+                slider_1.MatSliderModule, flex_layout_1.FlexLayoutModule,
                 angular_material_module_module_1.AngularMaterialModule,
-                users_routing_module_1.UsersRoutingModule, forms_1.ReactiveFormsModule, input_1.MatInputModule
-            ], schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA]
+                users_routing_module_1.UsersRoutingModule, forms_1.ReactiveFormsModule, shared_module_1.SharedModule, input_1.MatInputModule
+            ],
+            schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA]
         })
-    ], ProjectPersonnelsModule);
-    return ProjectPersonnelsModule;
+    ], DashboardModule);
+    return DashboardModule;
 }());
-exports.ProjectPersonnelsModule = ProjectPersonnelsModule;
+exports.DashboardModule = DashboardModule;

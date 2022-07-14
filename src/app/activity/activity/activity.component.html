@@ -1,4 +1,9 @@
-<button class="ui button" (click)="onClick()">ADD</button>
+<mat-card class="example-card">
+
+  <div class="demo-button-container">
+  <button mat-raised-button (click)="onClick()" class="demo-button">
+    Add Project
+  </button>
 
 <app-modal (close)="onClick()" *ngIf="modal">
   <div modalTitle > Activity Group</div>
@@ -36,3 +41,5 @@
 [data]="data" [header]="header"
 (emitDelete)='onDelete($event)'>
 </app-table>
+</div>
+</mat-card>

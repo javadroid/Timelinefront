@@ -1,21 +1,29 @@
+<table [ngClass]="classNames" class="ui table">
+  <thead>
+    <tr>
+      <th *ngFor="let head of header ">
+        {{head.label}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
 
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <ng-container [matColumnDef]="column" *ngFor="let column of header">
-    <th mat-header-cell *matHeaderCellDef> {{column.label}} </th>
-    <td mat-cell *matCellDef="let element"> {{element[column.label]}} </td>
-  </ng-container>
+    <tr *ngFor="let d of data">
+      <td *ngFor="let head of header ">
+        {{d[head.key]}}
+      </td>
+      <td>
 
-<ng-container *ngFor="let column of header">
-<tr mat-header-row *matHeaderRowDef="column.lable"></tr>
-</ng-container>
-<ng-container *ngFor="let d of data">
-  <ng-container *ngFor="let column of header">
-    <tr mat-row *matRowDef="let row; columns: d[column.key];"></tr>
-    </ng-container>
-  </ng-container>
+          <button (click)="emitEdit.emit(d)" >
+            <mat-icon>edit</mat-icon>
+          </button>
 
 
-
+        <button (click)="emitDelete.emit(d?._id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
 </table>
-

@@ -4,27 +4,35 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span>Timeline</span>
+  <div class="nav_container">
 
-    <a mat-button routerLinkActive="active" class="item" routerLink="/projects">project</a>
-    <a mat-button routerLinkActive="active" class="item" routerLink="/log">log</a>
-    <a mat-button routerLinkActive="active" class="item" routerLink="/projectpersonnels">project-personnels</a>
-     <a mat-button routerLinkActive="active" class="item" routerLink="/activityassignment">activity-assignment</a>
- <div class="right menu">
-    <ng-container *ngIf="signedIn$ | async">
-     <a mat-button routerLinkActive="active" class="item"  routerLink="users/project">Project</a>
-     <a mat-button routerLinkActive="active" class="item"  routerLink="users/activity">Activity</a>
-     <a mat-button routerLinkActive="active" class="item" routerLink="users/logout" (click)="logout()">Sign Out</a>
-    </ng-container>
-    <ng-container *ngIf="!(signedIn$ |async)">
-      <a routerLinkActive="active" class="item" routerLink="/login">Login</a>
-    </ng-container>
-</div>
+    <div class="left">
+
+      <a mat-button routerLinkActive="active" class="item" routerLink="/projects">project</a>
+      <a mat-button routerLinkActive="active" class="item" routerLink="/log">log</a>
+      <a mat-button routerLinkActive="active" class="item" routerLink="/projectpersonnels">project-personnels</a>
+       <a mat-button routerLinkActive="active" class="item" routerLink="/activityassignment">activity-assignment</a>
+       <a mat-button routerLinkActive="active" class="item" routerLink="/activity">activity</a>
+    </div>
+
+   <div class="right menu">
+      <ng-container *ngIf="signedIn$ | async">
+       <a mat-button routerLinkActive="active" class="item"  routerLink="users/project">Project</a>
+       <a mat-button routerLinkActive="active" class="item"  routerLink="users/activity">Activity</a>
+       <a mat-button routerLinkActive="active" class="item" routerLink="users/logout" (click)="logout()">Sign Out</a>
+      </ng-container>
+      <ng-container *ngIf="!(signedIn$ |async)">
+        <a routerLinkActive="active" class="item" routerLink="/login">Login</a>
+      </ng-container>
+  </div>
+  </div>
 
 
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon favorite-icon right" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
+    <mat-icon>account_circle</mat-icon>
   </button>
+
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>

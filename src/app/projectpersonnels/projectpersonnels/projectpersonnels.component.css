@@ -1,0 +1,6 @@
+.example-card {
+  max-width: 100%;
+  display: flex;
+  align-self: center;
+  margin: 50px;
+}

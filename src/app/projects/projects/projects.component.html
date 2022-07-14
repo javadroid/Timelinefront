@@ -1,40 +1,44 @@
+<mat-card class="example-card">
+
+  <div class="demo-button-container">
+    <button mat-raised-button (click)="onClick()" class="demo-button">
+      Add Project
+    </button>
 
 
+    <app-modal (close)="onClick()" *ngIf="modal">
+      <div modalTitle> Projects </div>
+      <p>inputs fields</p>
+      <div modalButton> <button (click)="onSubmit()" class="ui button">Save</button>
+      </div>
+      <div modalInput>
 
-<app-modal (close)="onClick()" *ngIf="modal">
-  <div modalTitle > Projects </div>
-  <p>inputs fields</p>
- <div modalButton> <button (click)="onSubmit()" class="ui button">Save</button>
- </div>
- <div modalInput>
+        <app-input label="Name" [control]="projectForm.controls.name"></app-input>
+        <app-input label="Description" [control]="projectForm.controls.description"></app-input>
+        <app-input [type]="'number'" label="cost" [control]="projectForm.controls.cost"></app-input>
+        <app-input [type]="'date'" label="StartDate" [control]="projectForm.controls.startDate"></app-input>
+        <app-input [type]="'date'" label="EndDate" [control]="projectForm.controls.endDate"></app-input>
+      </div>
 
-  <app-input label="Name" [control]="projectForm.controls.name"></app-input>
-  <app-input label="Description" [control]="projectForm.controls.description"></app-input>
-  <app-input [type]="'number'" label="cost" [control]="projectForm.controls.cost"></app-input>
-  <app-input [type]="'date'" label="StartDate" [control]="projectForm.controls.startDate"></app-input>
-  <app-input [type]="'date'" label="EndDate" [control]="projectForm.controls.endDate"></app-input>
- </div>
+    </app-modal>
 
-</app-modal>
+    <app-modal (close)="onClick2()" *ngIf="modal2">
+      <div modalTitle> Projects </div>
+      <p>inputs fields</p>
+      <div modalButton> <button (click)="onUpdate()" class="ui button">Update</button>
+      </div>
+      <div modalInput>
 
-<app-modal (close)="onClick2()" *ngIf="modal2">
-  <div modalTitle > Projects </div>
-  <p>inputs fields</p>
- <div modalButton> <button (click)="onUpdate()" class="ui button">Update</button>
- </div>
- <div modalInput>
+        <app-input label="Name" [control]="projectForm.controls.name"></app-input>
+        <app-input label="Description" [control]="projectForm.controls.description"></app-input>
+        <app-input [type]="'number'" label="cost" [control]="projectForm.controls.cost"></app-input>
+        <app-input [type]="'date'" label="StartDate" [control]="projectForm.controls.startDate"></app-input>
+        <app-input [type]="'date'" label="EndDate" [control]="projectForm.controls.endDate"></app-input>
+      </div>
+    </app-modal>
 
-  <app-input label="Name" [control]="projectForm.controls.name"></app-input>
-  <app-input label="Description" [control]="projectForm.controls.description"></app-input>
-  <app-input [type]="'number'" label="cost" [control]="projectForm.controls.cost"></app-input>
-  <app-input [type]="'date'" label="StartDate" [control]="projectForm.controls.startDate"></app-input>
-  <app-input  [type]="'date'" label="EndDate" [control]="projectForm.controls.endDate"></app-input>
- </div>
-</app-modal>
-
-<app-table classNames="striped celled"
-(emitEdit)="onEdit($event)"
-
-[data]="data" [header]="header"
-(emitDelete)='onDelete($event)'>
-</app-table>
+    <app-table classNames="striped celled" (emitEdit)="onEdit($event)" [data]="data" [header]="header"
+      (emitDelete)='onDelete($event)'>
+    </app-table>
+    </div>
+</mat-card>
