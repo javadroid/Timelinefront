@@ -18,14 +18,10 @@ var ProjectPersonnelsComponent = /** @class */ (function () {
         this.main = [];
         this.dateD = 0;
         this.header = [
-            { key: 'name', label: 'Name' },
-            { key: 'ProjectId', label: 'Project' },
             { key: 'Personneltype', label: 'PersonnelType' },
         ];
         this.projectpersonnelsForm = new forms_1.FormGroup({
             //users form
-            name: new forms_1.FormControl('', [forms_1.Validators.required]),
-            ProjectId: new forms_1.FormControl('', [forms_1.Validators.required]),
             Personneltype: new forms_1.FormControl('', [forms_1.Validators.required])
         });
     }
@@ -36,7 +32,6 @@ var ProjectPersonnelsComponent = /** @class */ (function () {
             _this.modal = !_this.modal;
             console.log(res);
             _this.projectpersonnelsForm.reset();
-            // window.location.reload();
         });
     };
     ProjectPersonnelsComponent.prototype.onClick = function () {
@@ -51,13 +46,10 @@ var ProjectPersonnelsComponent = /** @class */ (function () {
             .update((_a = this.main) === null || _a === void 0 ? void 0 : _a._id, [this.projectpersonnelsForm.value], 'project-personnels')
             .subscribe(function (_res) { });
         this.modal2 = !this.modal2;
-        window.location.reload();
     };
     ProjectPersonnelsComponent.prototype.onEdit = function (value) {
         this.modal2 = !this.modal2;
         this.projectpersonnelsForm.setValue({
-            name: value === null || value === void 0 ? void 0 : value.name,
-            ProjectId: value === null || value === void 0 ? void 0 : value.ProjectId,
             Personneltype: value === null || value === void 0 ? void 0 : value.Personneltype
         });
         this.main = value;
@@ -68,12 +60,10 @@ var ProjectPersonnelsComponent = /** @class */ (function () {
             return;
         } //console.log(this.http.findOne(this.projectForm.value.id) )
         this.http["delete"](value, 'project-personnels').subscribe(function (_res) { });
-        window.location.reload();
     };
     ProjectPersonnelsComponent.prototype.ngOnInit = function () {
         var _this = this;
         var a = this.http.find('project-personnels').subscribe(function (res) {
-            console.log('data ', res);
             _this.data = res;
         });
     };

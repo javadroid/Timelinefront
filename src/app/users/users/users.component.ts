@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
 onSubmit(){
   if(!this.timeFrom.value){
     return
-  }this.http.create(this.timeFrom.value,'users').subscribe(res=>{
+  }this.http.register(this.timeFrom.value,'users').subscribe(res=>{
     console.log(res)
 
     this.timeFrom.reset()
@@ -60,14 +60,15 @@ find(){
 
 
 findOne(){
-  if(!this.timeFrom.value.id){
+  if(!this.timeFrom.value.username){
+    console.log(this.timeFrom.value.username)
     console.log("not found")
     return
   } //console.log((this.timeFrom.value.id) )
-  const a= this.http.findOne(this.timeFrom.value.id,'users').subscribe((res: any) =>{
+  const a= this.http.findOne(this.timeFrom.value.username,'users').subscribe((res: any) =>{
     console.log(res)
   this.timeFrom.setValue({
-    address: res[0].address,
+    address:res[0].address,
     email: res[0].email,
     gender: res[0].gender,
     image:res[0].image,

@@ -1,42 +1,56 @@
 <mat-card class="example-card">
 
   <div class="demo-button-container">
-  <button mat-raised-button (click)="onClick()" class="demo-button">
-    Add Project
-  </button>
+    <button mat-raised-button (click)="onClick()" class="demo-button">
+      Add Project
+    </button>
 
-<app-modal (close)="onClick()" *ngIf="modal">
-  <div modalTitle > Activity Assignment </div>
-  <p>inputs fields</p>
- <div modalButton> <button (click)="onSubmit()" class="ui button">Save</button>
- </div>
- <div modalInput>
+    <app-modal (close)="onClick()" *ngIf="modal">
+      <div modalTitle> Activity Assignment </div>
+      <p>inputs fields</p>
+      <div modalButton> <button (click)="onSubmit()" class="ui button">Save</button>
+      </div>
+      <div modalInput>
 
-  <app-input label="ActivityId" [control]="activityassignmentForm.controls.ActivityId"></app-input>
-  <app-input [type]="'date'" label="Dateassigned" [control]="activityassignmentForm.controls.Dateassigned"></app-input>
-  <app-input [type]="'date'" label="Datedone" [control]="activityassignmentForm.controls.Datedone"></app-input>
- </div>
-</app-modal>
+        <select formControlName="projectId" (change)="changeProject($event)" class="ui dropdown">
+          <option *ngFor="let b of projectdata" [value]="b.name">{{b.name}} </option>
+        </select>
 
-<app-modal (close)="onClick2()" *ngIf="modal2">
-  <div modalTitle > Activity Assignment </div>
-  <p>inputs fields</p>
- <div modalButton> <button (click)="onUpdate()" class="ui button">Update</button>
- </div>
- <div modalInput>
+        <div>
+          <select formControlName="UserId" (change)="changeUser($event)" class="ui dropdown">
+            <option *ngFor="let b of usersdata" [value]="b.username">{{b.username}} </option>
+          </select>
+        </div>
 
-  <app-input label="ActivityId" [control]="activityassignmentForm.controls.ActivityId"></app-input>
- <app-input [type]="'date'" label="Dateassigned" [control]="activityassignmentForm.controls.Dateassigned"></app-input>
-  <app-input [type]="'date'" label="Datedone" [control]="activityassignmentForm.controls.Datedone"></app-input>
+        <div>
+          <select formControlName="ActivityId" (change)="changeActivity($event)" class="ui dropdown">
+            <option *ngFor="let b of activitydata" [value]="b.name">{{b.name}} </option>
+          </select>
+        </div>
 
- </div>
-</app-modal>
+        <app-input label="ActivityId" [control]="activityassignmentForm.controls.ActivityId"></app-input>
+        <app-input [type]="'date'" label="Dateassigned" [control]="activityassignmentForm.controls.Dateassigned">
+        </app-input>
+        <app-input [type]="'date'" label="Datedone" [control]="activityassignmentForm.controls.Datedone"></app-input>
+      </div>
+    </app-modal>
 
-<app-table classNames="striped celled"
-(emitEdit2)="onEdit($event)"
+    <app-modal (close)="onClick2()" *ngIf="modal2">
+      <div modalTitle> Activity Assignment </div>
+      <p>inputs fields</p>
+      <div modalButton> <button (click)="onUpdate()" class="ui button">Update</button>
+      </div>
 
-[data]="data" [header]="header"
-(emitDelete)='onDelete($event)'>
-</app-table>
-</div>
+      <app-input label="ActivityId" [control]="activityassignmentForm.controls.ActivityId"></app-input>
+      <app-input [type]="'date'" label="Dateassigned" [control]="activityassignmentForm.controls.Dateassigned">
+      </app-input>
+      <app-input [type]="'date'" label="Datedone" [control]="activityassignmentForm.controls.Datedone"></app-input>
+
+
+
+      <app-table classNames="striped celled" (emitEdit)="onEdit($event)" [data]="data" [header]="header"
+        (emitDelete)='onDelete($event)'>
+      </app-table>
+      </app-modal>
+  </div>
 </mat-card>

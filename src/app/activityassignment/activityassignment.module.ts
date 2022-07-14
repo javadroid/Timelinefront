@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { InputComponent } from '../shared/input/input.component';
 
+
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

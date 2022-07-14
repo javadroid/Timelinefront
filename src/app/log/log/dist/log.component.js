@@ -16,19 +16,21 @@ var LogComponent = /** @class */ (function () {
         this.modal2 = false;
         this.data = [];
         this.main = [];
+        this.projectdata = [];
+        this.usersdata = [];
         this.dateD = 0;
         this.header = [
-            { key: 'project', label: 'Project' },
-            { key: 'activity', label: 'Activity' },
-            { key: 'user', label: 'User' },
-            { key: 'bug', label: 'Bug' },
-            { key: 'reporter', label: 'Reporter' },
-            { key: 'reportedat', label: 'ReportedAt (Date)' },
-            { key: 'assignedto', label: 'AssignedTo' },
-            { key: 'dateresolved', label: 'DateResolved (Date)' },
-            { key: 'response', label: 'Response' },
-            { key: 'responseconfirm', label: 'ResponseConfirm' },
-            { key: 'responseconfirmdate', label: 'ResponseConfirmDate (Date)' },
+            { key: 'projectId', label: 'Project' },
+            { key: 'ActivityId', label: 'Activity' },
+            { key: 'UserId', label: 'User' },
+            { key: 'Bug', label: 'Bug' },
+            { key: 'ReporterId', label: 'Reporter' },
+            { key: 'ReportedAt', label: 'ReportedAt (Date)' },
+            { key: 'AssignedTo', label: 'AssignedTo' },
+            { key: 'DateResolved', label: 'DateResolved (Date)' },
+            { key: 'Response', label: 'Response' },
+            { key: 'ResponseConfirm', label: 'ResponseConfirm' },
+            { key: 'ResponseConfirmDate', label: 'ResponseConfirmDate (Date)' },
         ];
         this.logForm = new forms_1.FormGroup({
             //users form
@@ -46,14 +48,23 @@ var LogComponent = /** @class */ (function () {
         });
     }
     LogComponent.prototype.test = function () { };
+    LogComponent.prototype.changeProject = function (e) {
+        this.logForm.patchValue({
+            projectId: e.target.value
+        });
+    };
+    LogComponent.prototype.changeUsername = function (e) {
+        this.logForm.patchValue({
+            UserId: e.target.value
+        });
+    };
     LogComponent.prototype.onSubmit = function () {
         var _this = this;
         this.http.create(this.logForm.value, 'log').subscribe(function (res) {
             _this.modal = !_this.modal;
             console.log(res);
             _this.logForm.reset();
-            window.location.reload();
-            console.log(log);
+            // window.location.reload();
         });
     };
     LogComponent.prototype.onClick = function () {
@@ -102,7 +113,12 @@ var LogComponent = /** @class */ (function () {
         var _this = this;
         var a = this.http.find('log').subscribe(function (res) {
             _this.data = res;
-            console.log(res);
+        });
+        this.http.find('project').subscribe(function (res) {
+            _this.projectdata = res;
+        });
+        this.http.find('users').subscribe(function (res) {
+            _this.usersdata = res;
         });
     };
     LogComponent = __decorate([

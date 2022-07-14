@@ -7,9 +7,16 @@
  </div>
  <div modalInput>
 
-  <app-input label="PojectId" [control]="logForm.controls.projectId"></app-input>
+  <select formControlName="ProjectId" (change)="changeProject($event)"  class="ui dropdown"  >
+    <option  *ngFor="let b of projectdata" [value]="b.name">{{b.name}} </option>
+  </select>
+
   <app-input label="ActivityId" [control]="logForm.controls.ActivityId"></app-input>
-  <app-input label="UserId" [control]="logForm.controls.UserId"></app-input>
+
+  <select formControlName="UserId" (change)="changeUsername($event)"  class="ui dropdown"  >
+    <option  *ngFor="let b of usersdata" [value]="b.username">{{b.username}} </option>
+  </select>
+
   <app-input label="Bug" [control]="logForm.controls.Bug"></app-input>
   <app-input label="ReporterId" [control]="logForm.controls.ReporterId"></app-input>
   <app-input [type]="'date'" label="ReportedAt" [control]="logForm.controls.ReportedAt"></app-input>
@@ -28,9 +35,15 @@
  </div>
  <div modalInput>
 
-  <app-input label="PojectId" [control]="logForm.controls.projectId"></app-input>
+  <select formControlName="ProjectId" (change)="changeProject($event)"  class="ui dropdown"  >
+    <option  *ngFor="let b of projectdata" [value]="b.name">{{b.name}} </option>
+  </select> 
+
   <app-input label="ActivityId" [control]="logForm.controls.ActivityId"></app-input>
-  <app-input label="UserId" [control]="logForm.controls.UserId"></app-input>
+
+   <select formControlName="UserId" (change)="changeUsername($event)"  class="ui dropdown"  >
+    <option  *ngFor="let b of usersdata" [value]="b.username">{{b.username}} </option>
+  </select>
   <app-input label="Bug" [control]="logForm.controls.Bug"></app-input>
   <app-input label="ReporterId" [control]="logForm.controls.ReporterId"></app-input>
   <app-input [type]="'date'" label="ReportedAt" [control]="logForm.controls.ReportedAt"></app-input>
