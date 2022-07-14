@@ -7,6 +7,7 @@ import { CrudComponent } from './crud/crud.component';
 import { SharedModule } from '../shared/shared.module';
 import { ModalComponent } from '../shared/modal/modal.component';
 import { InputComponent } from '../shared/input/input.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { InputComponent } from '../shared/input/input.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ActivityAssignmentRoutingModule,SharedModule
   ]
 })

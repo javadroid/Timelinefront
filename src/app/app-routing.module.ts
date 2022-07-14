@@ -11,6 +11,7 @@ const routes: Routes = [
   {path:'log',loadChildren:()=>import( './log/log.module').then(m=>m.LogModule)},
   {path: 'projectpersonnels',loadChildren:()=>import('./projectpersonnels/projectpersonnels.module').then(m=>m.ProjectPersonnelsModule)},
   {path: 'activityassignment',loadChildren:()=>import('./activityassignment/activityassignment.module').then(m=>m.ActivityAssignmentModule)},
+  {path: 'activity',loadChildren:()=>import('./activity/activity.module').then(m=>m.activityModule)},
 
 
   {path:'**', component: NotFoundComponent}

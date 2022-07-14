@@ -12,20 +12,22 @@ export class LogComponent implements OnInit {
   modal2 = false;
   data = [] as any;
   main = [] as any;
+  projectdata = [] as any;
+  usersdata = [] as any;
 
   dateD = 0;
   header = [
-    { key: 'project', label: 'Project' },
-    { key: 'activity', label: 'Activity' },
-    { key: 'user', label: 'User' },
-    { key: 'bug', label: 'Bug' },
-    { key: 'reporter', label: 'Reporter' },
-    { key: 'reportedat', label: 'ReportedAt (Date)' },
-    { key: 'assignedto', label: 'AssignedTo' },
-    { key: 'dateresolved', label: 'DateResolved (Date)' },
-    { key: 'response', label: 'Response' },
-    { key: 'responseconfirm', label: 'ResponseConfirm' },
-    { key: 'responseconfirmdate', label: 'ResponseConfirmDate (Date)' },
+    { key: 'projectId', label: 'Project' },
+    { key: 'ActivityId', label: 'Activity' },
+    { key: 'UserId', label: 'User' },
+    { key: 'Bug', label: 'Bug' },
+    { key: 'ReporterId', label: 'Reporter' },
+    { key: 'ReportedAt', label: 'ReportedAt (Date)' },
+    { key: 'AssignedTo', label: 'AssignedTo' },
+    { key: 'DateResolved', label: 'DateResolved (Date)' },
+    { key: 'Response', label: 'Response' },
+    { key: 'ResponseConfirm', label: 'ResponseConfirm' },
+    { key: 'ResponseConfirmDate', label: 'ResponseConfirmDate (Date)' },
     
   ];
 
@@ -46,13 +48,24 @@ export class LogComponent implements OnInit {
 
   test() {}
 
+  changeProject(e: any) {
+    this.logForm.patchValue({
+      projectId: e.target.value,
+    });
+  }
+
+  changeUsername(e: any) {
+    this.logForm.patchValue({
+      UserId: e.target.value,
+    });
+  }
+
   onSubmit() {
     this.http.create(this.logForm.value, 'log').subscribe((res) => {
       this.modal = !this.modal;
       console.log(res);
       this.logForm.reset();
-      window.location.reload();
-      console.log(log);
+      // window.location.reload();
     });
   } 
 
@@ -77,17 +90,17 @@ export class LogComponent implements OnInit {
 
     this.logForm.patchValue(value);
      this.logForm.setValue({
-       projectId: value?.projectId,
-       ActivityId: value?.ActivityId,
+      projectId: value?.projectId,
+      ActivityId: value?.ActivityId,
       UserId: value?.UserId,
       Bug: value?.Bug,
-     ReporterId: value?.ReporterId,
+      ReporterId: value?.ReporterId,
       ReportedAt: value?.ReportedAt,
-       AssignedTo: value?.AssignedTo,
-       DateResolved: value?.DateResolved,
+      AssignedTo: value?.AssignedTo,
+      DateResolved: value?.DateResolved,
       Response: value?.Response,
       ResponseConfirm: value?.ResponseConfirm,
-       ResponseConfirmDate: value?.ResponseConfirmDate
+      ResponseConfirmDate: value?.ResponseConfirmDate
     });
     this.main = value;
 
@@ -108,11 +121,17 @@ export class LogComponent implements OnInit {
   ngOnInit(): void {
     const a = this.http.find('log').subscribe((res) => {
       this.data = res;
-      console.log(res);
     });
+
+    this.http.find('project').subscribe((res) => {
+      this.projectdata = res;
+    });
+    
+    this.http.find('users').subscribe((res) => {
+      this.usersdata = res;
+    });
+
   }
-
-
 }
 function log(log: any) {
   throw new Error('Function not implemented.');

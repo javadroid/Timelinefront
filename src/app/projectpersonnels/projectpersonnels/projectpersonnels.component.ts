@@ -15,15 +15,11 @@ export class ProjectPersonnelsComponent implements OnInit {
 
   dateD = 0;
   header = [
-    { key: 'name', label: 'Name' },
-    { key: 'ProjectId', label: 'Project'},
     { key: 'Personneltype', label: 'PersonnelType' },
   ];
 
   projectpersonnelsForm = new FormGroup({
     //users form
-    name: new FormControl('', [Validators.required]),
-    ProjectId: new FormControl('',[Validators.required]),
     Personneltype: new FormControl('', [Validators.required]),
   });
 
@@ -34,7 +30,6 @@ export class ProjectPersonnelsComponent implements OnInit {
       this.modal = !this.modal;
       console.log(res);
       this.projectpersonnelsForm.reset();
-      // window.location.reload();
     });
   }
 
@@ -50,14 +45,11 @@ export class ProjectPersonnelsComponent implements OnInit {
       .update(this.main?._id, [this.projectpersonnelsForm.value], 'project-personnels')
       .subscribe((_res) => {});
     this.modal2 = !this.modal2;
-    window.location.reload();
   }
   onEdit(value: any) {
     this.modal2 = !this.modal2;
     this.projectpersonnelsForm.setValue({
-      name: value?.name,
-      ProjectId : value?.ProjectId,
-      Personneltype: value?.Personneltype, 
+      Personneltype: value?.Personneltype,
     });
     this.main = value;
   }
@@ -68,14 +60,12 @@ export class ProjectPersonnelsComponent implements OnInit {
       return;
     } //console.log(this.http.findOne(this.projectForm.value.id) )
     this.http.delete(value, 'project-personnels').subscribe((_res) => {});
-    window.location.reload();
   }
 
   constructor(private http: TimelineApiService) {}
 
   ngOnInit(): void {
     const a = this.http.find('project-personnels').subscribe((res) => {
-      console.log('data ', res)
       this.data = res;
     });
   }

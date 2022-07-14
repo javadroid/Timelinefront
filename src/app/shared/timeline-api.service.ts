@@ -56,14 +56,20 @@ export class TimelineApiService {
 
 
   create(details:any,rs:string):Observable<any>{
-    return  this.http.post('http://localhost:3000/api/'+rs,details,{withCredentials:true}).pipe(tap(()=>{
+    return  this.http.post('http://localhost:3000/api/'+rs,details,).pipe(tap(()=>{
+      
+    }))
+   }
+
+   register(details:any,rs:string):Observable<any>{
+    return  this.http.post('http://localhost:3000/api/'+rs,details,).pipe(tap(()=>{
       this.signedIn$.next(true)
     }))
    }
 
   signIn(details:any ):Observable<any>{
 
-    return this.http.post('http://localhost:3000/api/users/login',details ,).pipe(tap(()=>{
+    return this.http.post('http://localhost:3000/api/users/login',details ).pipe(tap(()=>{
       this.signedIn$.next(true)
     }));
   }
