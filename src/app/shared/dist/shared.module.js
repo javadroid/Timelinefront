@@ -7,11 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.SharedModule = void 0;
-var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
-var input_component_1 = require("./input/input.component");
 var modal_component_1 = require("./modal/modal.component");
-var forms_1 = require("@angular/forms");
 var table_component_1 = require("./table/table.component");
 var input_1 = require("@angular/material/input");
 var form_field_1 = require("@angular/material/form-field");
@@ -19,7 +16,12 @@ var table_1 = require("@angular/material/table");
 var paginator_1 = require("@angular/material/paginator");
 var sort_1 = require("@angular/material/sort");
 var progress_spinner_1 = require("@angular/material/progress-spinner");
-// import {  MatPaginatorModule, MatProgressSpinnerModule, MatSortModule } from "@angular/material";
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/common/http");
+var forms_1 = require("@angular/forms");
+var flex_layout_1 = require("@angular/flex-layout");
+var input_component_1 = require("./input/input.component");
+var angular_material_module_module_1 = require("../angular-material-module/angular-material-module.module");
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -33,9 +35,13 @@ var SharedModule = /** @class */ (function () {
                 forms_1.ReactiveFormsModule, input_1.MatInputModule, form_field_1.MatFormFieldModule, table_1.MatTableModule,
                 paginator_1.MatPaginatorModule,
                 sort_1.MatSortModule,
-                progress_spinner_1.MatProgressSpinnerModule
+                progress_spinner_1.MatProgressSpinnerModule,
+                http_1.HttpClientModule,
+                angular_material_module_module_1.AngularMaterialModule,
+                flex_layout_1.FlexLayoutModule
             ],
-            exports: [input_component_1.InputComponent, table_component_1.TableComponent, modal_component_1.ModalComponent, input_1.MatInputModule, form_field_1.MatFormFieldModule,]
+            exports: [input_component_1.InputComponent, table_component_1.TableComponent, modal_component_1.ModalComponent, input_1.MatInputModule, form_field_1.MatFormFieldModule,],
+            schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA]
         })
     ], SharedModule);
     return SharedModule;
