@@ -7,7 +7,7 @@
       <mat-card-content>
 
           <app-input [placeholder]="'Username'"   [control]="loginForm.controls.username"></app-input>
-         <app-input [placeholder]="'Username'" [type]="'Password'"  [control]="loginForm.controls.password"></app-input>
+         <app-input [placeholder]="'Password'" [type]="'password'"  [control]="loginForm.controls.password"></app-input>
 
       </mat-card-content>
       <button  [disabled]="!loginForm.valid" type="submit" mat-stroked-button color="accent" class="btn-block">Log in</button>

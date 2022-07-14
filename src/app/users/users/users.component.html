@@ -8,25 +8,31 @@
         <app-input [placeholder]="'Username'" [control]="timeFrom.controls.username"></app-input>
         <app-input [placeholder]="'Email'" [type]="'email'" [control]="timeFrom.controls.email"></app-input>
         <app-input [placeholder]="'Phone Number'" [type]="'number'" [control]="timeFrom.controls.phonenumber"></app-input>
-        <mat-form-field class="example-full-width">
-          <mat-label>Choose a role...</mat-label>
-          <mat-select>
-            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+
       </mat-card-content>
       <mat-card-content>
     <app-input  [placeholder]="'Gender'" [control]="timeFrom.controls.gender"></app-input>
     <app-input  [placeholder]="'Address'" [control]="timeFrom.controls.address"></app-input>
     <app-input [type]="'password'" [placeholder]="'Password'" [control]="timeFrom.controls.password"></app-input>
-    <app-input  [placeholder]="'Image'" [control]="timeFrom.controls.image"></app-input>
+
+
+      </mat-card-content>
+      <app-input  [placeholder]="'Personnel'" [control]="timeFrom.controls.personnelType"></app-input>
+      <app-input  [placeholder]="'Image'" [control]="timeFrom.controls.image"></app-input>
+      <mat-form-field class="example-full-width">
+        <mat-label>Choose a role...</mat-label>
+        <mat-select>
+          <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-card-content>
 
       </mat-card-content>
       <button  [disabled]="!timeFrom.valid" mat-stroked-button color="accent" class="btn-block" type="submit">Register</button>
       <button (click)="rest()" mat-stroked-button color="accent" class="btn-block" type="button">Reset</button>
     </form>
-
+{{timeFrom.valid }}
   </mat-card>
 </div>
 <!--
