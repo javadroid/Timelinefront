@@ -20,12 +20,10 @@ var LogModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 log_component_1.LogComponent,
-                crud_component_1.CrudComponent,
+                crud_component_1.CrudComponent
             ],
-            imports: [
-                common_1.CommonModule,
-                log_routing_module_1.LogRoutingModule, shared_module_1.SharedModule
-            ]
+            imports: [common_1.CommonModule,
+                log_routing_module_1.LogRoutingModule, shared_module_1.SharedModule]
         })
     ], LogModule);
     return LogModule;

@@ -18,18 +18,18 @@ export class ActivityAssignmentComponent implements OnInit {
 
   dateD = 0;
   header = [
-    { key: 'projectId', label: 'Project'},
-    { key: 'UserId', label: 'Username'},
-    { key: 'ActivityId', label: 'Activity Name'},
+    { key: 'project', label: 'Project'},
+    { key: 'activity', label: 'Activity'},
+    { key: 'user', label: 'User'},
     { key: 'duration', label: 'Duration (Days)' },
   ];
 
   activityassignmentForm = new FormGroup({
-    projectId: new FormControl('',[Validators.required]),
-    UserId: new FormControl('', [Validators.required]),
-    ActivityId: new FormControl('',[Validators.required]),
-    Dateassigned: new FormControl('', [Validators.required]),
-    Datedone: new FormControl('', [Validators.required]),
+    project: new FormControl('',[Validators.required]),
+    activity: new FormControl('', [Validators.required]),
+    user: new FormControl('',[Validators.required]),
+    dateAssigned: new FormControl('', [Validators.required]),
+    dateDone: new FormControl('', [Validators.required]),
     duration: new FormControl(),
   });
 
@@ -39,25 +39,27 @@ export class ActivityAssignmentComponent implements OnInit {
   test() {}
   changeProject(e: any) {
     this.activityassignmentForm.patchValue({
-      projectId: e.target.value,
+      project: e.target.value,
     });
   }
 
   changeUser(e: any) {
     this.activityassignmentForm.patchValue({
-      UserId: e.target.value,
+      user: e.target.value,
     });
   }
 
   changeActivity(e: any) {
+    console.log(e)
     this.activityassignmentForm.patchValue({
-      ActivityId: e.target.value,
+
+      activity: e.target.value,
     });
   }
 
   onSubmit() {
-    const s = this.activityassignmentForm.value.Dateassigned;
-    const e = this.activityassignmentForm.value.Datedone;
+    const s = this.activityassignmentForm.value.dateAssigned;
+    const e = this.activityassignmentForm.value.dateDone;
     const start = new Date(`${s}`);
     const end = new Date(`${e}`);
     console.log(this.activityassignmentForm.value)
@@ -70,8 +72,8 @@ export class ActivityAssignmentComponent implements OnInit {
 
     });
 
-    
-    
+
+
     this.http.create(this.activityassignmentForm.value, 'activityassignment').subscribe((res) => {
       this.modal = !this.modal;
       //console.log(res);
@@ -98,11 +100,11 @@ export class ActivityAssignmentComponent implements OnInit {
     console.log(value)
     this.modal2 = !this.modal2;
     this.activityassignmentForm.setValue({
-      projectId: value?.projectId,
-      UserId: value?.UserId,
-      ActivityId : value?.ActivityId,
-      Dateassigned: this.formatDate(value?.Dateassigned),
-      Datedone: this.formatDate(value?.Datedone),
+      project: value?.project,
+      user: value?.user,
+      activity : value?.activity,
+      dateAssigned: this.formatDate(value?.dateAssigned),
+      dateDone: this.formatDate(value?.dateDone),
       duration: value?.duration,
     });
     this.main = value;
@@ -126,14 +128,17 @@ export class ActivityAssignmentComponent implements OnInit {
     });
 
      this.http.find('project').subscribe((res) => {
+      console.log(res);
       this.projectdata = res;
     });
 
     this.http.find('users').subscribe((res) => {
+      console.log(res);
       this.usersdata = res;
     });
 
     this.http.find('activity').subscribe((res) => {
+      console.log(res);
       this.activitydata = res;
     });
 

@@ -14,6 +14,7 @@ var activityComponent = /** @class */ (function () {
         this.http = http;
         this.modal = false;
         this.modal2 = false;
+        this.projectdata = [];
         this.data = [];
         this.main = [];
         this.dateD = 0;
@@ -24,9 +25,7 @@ var activityComponent = /** @class */ (function () {
         ];
         this.activityForm = new forms_1.FormGroup({
             //users form
-            name: new forms_1.FormControl('', [
-                forms_1.Validators.required /**  Validators.pattern(/\s/)***/,
-            ]),
+            name: new forms_1.FormControl('', [forms_1.Validators.required]),
             description: new forms_1.FormControl('', [forms_1.Validators.required]),
             startDate: new forms_1.FormControl('', [forms_1.Validators.required]),
             endDate: new forms_1.FormControl('', [forms_1.Validators.required]),
@@ -40,6 +39,7 @@ var activityComponent = /** @class */ (function () {
         var e = this.activityForm.value.endDate;
         var start = new Date("" + s);
         var end = new Date("" + e);
+        console.log(this.activityForm.value);
         if (this.activityForm.invalid) {
             return;
         }
@@ -51,7 +51,7 @@ var activityComponent = /** @class */ (function () {
             _this.modal = !_this.modal;
             console.log(res);
             _this.activityForm.reset();
-            window.location.reload();
+            //window.location.reload();
         });
     };
     activityComponent.prototype.onClick = function () {
@@ -78,15 +78,15 @@ var activityComponent = /** @class */ (function () {
             .update((_a = this.main) === null || _a === void 0 ? void 0 : _a._id, [this.activityForm.value], 'activity')
             .subscribe(function (res) { });
         this.modal2 = !this.modal2;
-        window.location.reload();
+        //window.location.reload();
     };
     activityComponent.prototype.onEdit = function (value) {
         this.modal2 = !this.modal2;
         this.activityForm.setValue({
             name: value === null || value === void 0 ? void 0 : value.name,
             description: value === null || value === void 0 ? void 0 : value.description,
-            startDate: value === null || value === void 0 ? void 0 : value.startDate,
-            endDate: value === null || value === void 0 ? void 0 : value.endDate,
+            startDate: this.formatDate(value === null || value === void 0 ? void 0 : value.startDate),
+            endDate: this.formatDate(value === null || value === void 0 ? void 0 : value.endDate),
             duration: value === null || value === void 0 ? void 0 : value.duration
         });
         this.main = value;
@@ -97,14 +97,29 @@ var activityComponent = /** @class */ (function () {
             return;
         } //console.log(this.http.findOne(this.activityForm.value.id) )
         this.http["delete"](value, 'activity').subscribe(function (res) { });
-        window.location.reload();
+        //window.location.reload();
     };
     activityComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var a = this.http.find('activity').subscribe(function (res) {
+        this.http.find('activity').subscribe(function (res) {
             _this.data = res;
-            console.log(res);
         });
+    };
+    activityComponent.prototype.formatDate = function (date) {
+        if (!date) {
+            return null;
+        }
+        // eslint-disable-next-line prefer-const
+        var d = new Date(date), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), 
+        // eslint-disable-next-line prefer-const
+        year = d.getFullYear();
+        if (month.length < 2) {
+            month = '0' + month;
+        }
+        if (day.length < 2) {
+            day = '0' + day;
+        }
+        return [year, month, day].join('-');
     };
     activityComponent = __decorate([
         core_1.Component({

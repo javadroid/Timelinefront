@@ -14,6 +14,7 @@ import { InputComponent } from '../shared/input/input.component';
     LogComponent,
     CrudComponent
   ],
-  imports: [CommonModule, LogRoutingModule, SharedModule]
+  imports: [CommonModule,
+    LogRoutingModule, SharedModule]
 })
 export class LogModule { }

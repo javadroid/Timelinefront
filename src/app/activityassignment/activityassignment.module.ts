@@ -29,11 +29,7 @@ import { UsersRoutingModule } from '../users/users-routing.module';
   imports: [
     CommonModule,
     ActivityAssignmentRoutingModule,SharedModule,
-    FormsModule,
-    MatSliderModule,
-    FlexLayoutModule,
-    AngularMaterialModule,
-    UsersRoutingModule,ReactiveFormsModule,MatInputModule
-  ],schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
+  ]
 })
 export class ActivityAssignmentModule { }

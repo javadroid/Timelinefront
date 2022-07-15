@@ -17,24 +17,24 @@ export class activityComponent implements OnInit {
   dateD = 0;
   header = [
     { key: 'name', label: 'Name' },
-    { key: 'Description', label: 'Description' },
+    { key: 'description', label: 'Description' },
     { key: 'duration', label: 'Duration (Days)' },
   ];
 
   activityForm = new FormGroup({
     //users form
     name: new FormControl('',[Validators.required]),
-    Description: new FormControl('', [Validators.required]),
-    StartDate: new FormControl('', [Validators.required]),
-    EndDate: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    startDate: new FormControl('', [Validators.required]),
+    endDate: new FormControl('', [Validators.required]),
     duration: new FormControl(),
   });
 
   test() {}
 
   onSubmit() {
-    const s = this.activityForm.value.StartDate;
-    const e = this.activityForm.value.EndDate;
+    const s = this.activityForm.value.startDate;
+    const e = this.activityForm.value.endDate;
     const start = new Date(`${s}`);
     const end = new Date(`${e}`);
     console.log(this.activityForm.value)
@@ -62,8 +62,8 @@ export class activityComponent implements OnInit {
   }
 
   onUpdate() {
-    const s = this.activityForm.value.StartDate;
-    const e = this.activityForm.value.EndDate;
+    const s = this.activityForm.value.startDate;
+    const e = this.activityForm.value.endDate;
     const start = new Date(`${s}`);
     const end = new Date(`${e}`);
     if (!this.activityForm.valid && !this.main) {
@@ -84,9 +84,9 @@ export class activityComponent implements OnInit {
     this.modal2 = !this.modal2;
     this.activityForm.setValue({
       name: value?.name,
-      Description: value?.description,
-      StartDate: this.formatDate(value?.StartDate), 
-      EndDate: this.formatDate(value?.EndDate),
+      description: value?.description,
+      startDate: this.formatDate(value?.startDate),
+      endDate: this.formatDate(value?.endDate),
       duration: value?.duration,
     });
     this.main = value;

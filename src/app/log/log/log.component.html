@@ -1,5 +1,7 @@
 <button class="ui button" (click)="onClick()">ADD</button>
 
+
+{{data | json}}
 <app-modal (close)="onClick()" *ngIf="modal">
   <div modalTitle > Logs</div>
   <p>inputs fields</p>
@@ -7,24 +9,25 @@
  </div>
  <div modalInput>
 
-  <select formControlName="ProjectId" (change)="changeProject($event)"  class="ui dropdown"  >
+  <select formControlName="project"(change)="changeProject($event)"  class="ui dropdown"  >
     <option  *ngFor="let b of projectdata" [value]="b.name">{{b.name}} </option>
   </select>
+  <select formControlName="activity" (change)="changeActivity($event)"  class="ui dropdown"  >
+    <option  *ngFor="let b of activitydata" [value]="b.name">{{b.name}} </option>
+  </select>
 
-  <app-input label="ActivityId" [control]="logForm.controls.ActivityId"></app-input>
-
-  <select formControlName="UserId" (change)="changeUsername($event)"  class="ui dropdown"  >
+  <select formControlName="user" (change)="changeUsername($event)"  class="ui dropdown"  >
     <option  *ngFor="let b of usersdata" [value]="b.username">{{b.username}} </option>
   </select>
 
-  <app-input label="Bug" [control]="logForm.controls.Bug"></app-input>
-  <app-input label="ReporterId" [control]="logForm.controls.ReporterId"></app-input>
-  <app-input [type]="'date'" label="ReportedAt" [control]="logForm.controls.ReportedAt"></app-input>
-  <app-input label="AssignedTo" [control]="logForm.controls.AssignedTo"></app-input>
-  <app-input [type]="'date'" label="DateResolved" [control]="logForm.controls.DateResolved"></app-input>
-  <app-input label="Response" [control]="logForm.controls.Response"></app-input>
-  <app-input label="ResponseConfirm" [control]="logForm.controls.ResponseConfirm"></app-input>
-  <app-input [type]="'date'" label="ResponseConfirmDate" [control]="logForm.controls.ResponseConfirmDate"></app-input>
+  <app-input label="log" [control]="logForm.controls.log"></app-input>
+  <app-input label="ReporterId" [control]="logForm.controls.reporterId"></app-input>
+  <app-input [type]="'date'" label="ReportedAt" [control]="logForm.controls.reportedAt"></app-input>
+  <app-input label="AssignedTo" [control]="logForm.controls.assignedTo"></app-input>
+  <app-input [type]="'date'" label="DateResolved" [control]="logForm.controls.dateResolved"></app-input>
+  <app-input label="Response" [control]="logForm.controls.response"></app-input>
+  <app-input label="ResponseConfirm" [control]="logForm.controls.responseConfirm"></app-input>
+  <app-input [type]="'date'" label="ResponseConfirmDate" [control]="logForm.controls.responseConfirmDate"></app-input>
  </div>
 </app-modal>
 
@@ -35,24 +38,24 @@
  </div>
  <div modalInput>
 
-  <select formControlName="ProjectId" (change)="changeProject($event)"  class="ui dropdown"  >
+  <select formControlName="project" (change)="changeProject($event)"  class="ui dropdown"  >
     <option  *ngFor="let b of projectdata" [value]="b.name">{{b.name}} </option>
-  </select> 
+  </select>
 
-  <app-input label="ActivityId" [control]="logForm.controls.ActivityId"></app-input>
+  <app-input label="activity" [control]="logForm.controls.activity"></app-input>
 
-   <select formControlName="UserId" (change)="changeUsername($event)"  class="ui dropdown"  >
+   <select formControlName="user" (change)="changeUsername($event)"  class="ui dropdown"  >
     <option  *ngFor="let b of usersdata" [value]="b.username">{{b.username}} </option>
   </select>
-  <app-input label="Bug" [control]="logForm.controls.Bug"></app-input>
-  <app-input label="ReporterId" [control]="logForm.controls.ReporterId"></app-input>
-  <app-input [type]="'date'" label="ReportedAt" [control]="logForm.controls.ReportedAt"></app-input>
-  <app-input label="AssignedTo" [control]="logForm.controls.AssignedTo"></app-input>
-  <app-input [type]="'date'" label="DateResolved" [control]="logForm.controls.DateResolved"></app-input>
-  <app-input label="Response" [control]="logForm.controls.Response"></app-input>
-  <app-input label="ResponseConfirm" [control]="logForm.controls.ResponseConfirm"></app-input>
-  <app-input [type]="'date'" label="ResponseConfirmDate" [control]="logForm.controls.ResponseConfirmDate"></app-input>
-  
+  <app-input label="log" [control]="logForm.controls.log"></app-input>
+  <app-input label="ReporterId" [control]="logForm.controls.reporterId"></app-input>
+  <app-input [type]="'date'" label="ReportedAt" [control]="logForm.controls.reportedAt"></app-input>
+  <app-input label="AssignedTo" [control]="logForm.controls.assignedTo"></app-input>
+  <app-input [type]="'date'" label="DateResolved" [control]="logForm.controls.dateResolved"></app-input>
+  <app-input label="Response" [control]="logForm.controls.response"></app-input>
+  <app-input label="ResponseConfirm" [control]="logForm.controls.responseConfirm"></app-input>
+  <app-input [type]="'date'" label="ResponseConfirmDate" [control]="logForm.controls.responseConfirmDate"></app-input>
+
  </div>
 </app-modal>
 

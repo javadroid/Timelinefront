@@ -14,49 +14,57 @@ export class LogComponent implements OnInit {
   main = [] as any;
   projectdata = [] as any;
   usersdata = [] as any;
+  activitydata = [] as any;
+
 
   dateD = 0;
   header = [
-    { key: 'projectId', label: 'Project' },
-    { key: 'ActivityId', label: 'Activity' },
-    { key: 'UserId', label: 'User' },
-    { key: 'Bug', label: 'Bug' },
-    { key: 'ReporterId', label: 'Reporter' },
-    { key: 'ReportedAt', label: 'ReportedAt (Date)' },
-    { key: 'AssignedTo', label: 'AssignedTo' },
-    { key: 'DateResolved', label: 'DateResolved (Date)' },
-    { key: 'Response', label: 'Response' },
-    { key: 'ResponseConfirm', label: 'ResponseConfirm' },
-    { key: 'ResponseConfirmDate', label: 'ResponseConfirmDate (Date)' },
+    { key: 'project', label: 'Project' },
+    { key: 'activity', label: 'Activity' },
+    { key: 'user', label: 'User' },
+    { key: 'log', label: 'Log' },
+    { key: 'reporterId', label: 'Reporter' },
+    { key: 'reportedAt', label: 'ReportedAt (Date)' },
+    { key: 'assignedTo', label: 'AssignedTo' },
+    { key: 'dateResolved', label: 'DateResolved (Date)' },
+    { key: 'response', label: 'Response' },
+    { key: 'responseConfirm', label: 'ResponseConfirm' },
+    { key: 'responseConfirmDate', label: 'ResponseConfirmDate (Date)' },
 
   ];
 
   logForm = new FormGroup({
     //users form
-    projectId: new FormControl('', [Validators.required]),
-    ActivityId: new FormControl('', [Validators.required]),
-    UserId: new FormControl('', [Validators.required]),
-    Bug: new FormControl('', [Validators.required]),
-    ReporterId: new FormControl('', [Validators.required]),
-    ReportedAt: new FormControl('', [Validators.required]),
-    AssignedTo: new FormControl('', [Validators.required]),
-    DateResolved: new FormControl('', [Validators.required]),
-    Response: new FormControl('', [Validators.required]),
-    ResponseConfirm: new FormControl('', [Validators.required]),
-    ResponseConfirmDate: new FormControl('', [Validators.required]),
+    project: new FormControl('', [Validators.required]),
+    activity: new FormControl('', [Validators.required]),
+    user: new FormControl('', [Validators.required]),
+    log: new FormControl('', [Validators.required]),
+    reporterId: new FormControl('', [Validators.required]),
+    reportedAt: new FormControl('', [Validators.required]),
+    assignedTo: new FormControl('', [Validators.required]),
+    dateResolved: new FormControl('', [Validators.required]),
+    response: new FormControl('', [Validators.required]),
+    responseConfirm: new FormControl('', [Validators.required]),
+    responseConfirmDate: new FormControl('', [Validators.required]),
   });
 
   test() {}
 
   changeProject(e: any) {
     this.logForm.patchValue({
-      projectId: e.target.value,
+      project: e.target.value,
     });
   }
 
   changeUsername(e: any) {
     this.logForm.patchValue({
-      UserId: e.target.value,
+      user: e.target.value,
+    });
+  }
+
+  changeActivity(e: any) {
+    this.logForm.patchValue({
+      activity: e.target.value,
     });
   }
 
@@ -90,17 +98,17 @@ export class LogComponent implements OnInit {
 
     this.logForm.patchValue(value);
      this.logForm.setValue({
-      projectId: value?.projectId,
-      ActivityId: value?.ActivityId,
-      UserId: value?.UserId,
-      Bug: value?.Bug,
-      ReporterId: value?.ReporterId,
-      ReportedAt: value?.ReportedAt,
-      AssignedTo: value?.AssignedTo,
-      DateResolved: value?.DateResolved,
-      Response: value?.Response,
-      ResponseConfirm: value?.ResponseConfirm,
-      ResponseConfirmDate: value?.ResponseConfirmDate
+      project: value?.project,
+      activity: value?.activity,
+      user: value?.user,
+      log: value?.log,
+      reporterId: value?.reporterId,
+      reportedAt: value?.reportedAt,
+      assignedTo: value?.assignedTo,
+      dateResolved: value?.dateResolved,
+      response: value?.response,
+      responseConfirm: value?.responseConfirm,
+      responseConfirmDate: value?.responseConfirmDate
     });
     this.main = value;
 
@@ -120,6 +128,7 @@ export class LogComponent implements OnInit {
 
   ngOnInit(): void {
     const a = this.http.find('log').subscribe((res) => {
+      console.log(res)
       this.data = res;
     });
 
@@ -129,6 +138,10 @@ export class LogComponent implements OnInit {
 
     this.http.find('users').subscribe((res) => {
       this.usersdata = res;
+    });
+
+    this.http.find('activity').subscribe((res) => {
+      this.activitydata = res;
     });
 
   }

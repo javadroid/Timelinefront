@@ -18,44 +18,50 @@ var LogComponent = /** @class */ (function () {
         this.main = [];
         this.projectdata = [];
         this.usersdata = [];
+        this.activitydata = [];
         this.dateD = 0;
         this.header = [
-            { key: 'projectId', label: 'Project' },
-            { key: 'ActivityId', label: 'Activity' },
-            { key: 'UserId', label: 'User' },
-            { key: 'Bug', label: 'Bug' },
-            { key: 'ReporterId', label: 'Reporter' },
-            { key: 'ReportedAt', label: 'ReportedAt (Date)' },
-            { key: 'AssignedTo', label: 'AssignedTo' },
-            { key: 'DateResolved', label: 'DateResolved (Date)' },
-            { key: 'Response', label: 'Response' },
-            { key: 'ResponseConfirm', label: 'ResponseConfirm' },
-            { key: 'ResponseConfirmDate', label: 'ResponseConfirmDate (Date)' },
+            { key: 'project', label: 'Project' },
+            { key: 'activity', label: 'Activity' },
+            { key: 'user', label: 'User' },
+            { key: 'log', label: 'Log' },
+            { key: 'reporterId', label: 'Reporter' },
+            { key: 'reportedAt', label: 'ReportedAt (Date)' },
+            { key: 'assignedTo', label: 'AssignedTo' },
+            { key: 'dateResolved', label: 'DateResolved (Date)' },
+            { key: 'response', label: 'Response' },
+            { key: 'responseConfirm', label: 'ResponseConfirm' },
+            { key: 'responseConfirmDate', label: 'ResponseConfirmDate (Date)' },
         ];
         this.logForm = new forms_1.FormGroup({
             //users form
-            projectId: new forms_1.FormControl('', [forms_1.Validators.required]),
-            ActivityId: new forms_1.FormControl('', [forms_1.Validators.required]),
-            UserId: new forms_1.FormControl('', [forms_1.Validators.required]),
-            Bug: new forms_1.FormControl('', [forms_1.Validators.required]),
-            ReporterId: new forms_1.FormControl('', [forms_1.Validators.required]),
-            ReportedAt: new forms_1.FormControl('', [forms_1.Validators.required]),
-            AssignedTo: new forms_1.FormControl('', [forms_1.Validators.required]),
-            DateResolved: new forms_1.FormControl('', [forms_1.Validators.required]),
-            Response: new forms_1.FormControl('', [forms_1.Validators.required]),
-            ResponseConfirm: new forms_1.FormControl('', [forms_1.Validators.required]),
-            ResponseConfirmDate: new forms_1.FormControl('', [forms_1.Validators.required])
+            project: new forms_1.FormControl('', [forms_1.Validators.required]),
+            activity: new forms_1.FormControl('', [forms_1.Validators.required]),
+            user: new forms_1.FormControl('', [forms_1.Validators.required]),
+            log: new forms_1.FormControl('', [forms_1.Validators.required]),
+            reporterId: new forms_1.FormControl('', [forms_1.Validators.required]),
+            reportedAt: new forms_1.FormControl('', [forms_1.Validators.required]),
+            assignedTo: new forms_1.FormControl('', [forms_1.Validators.required]),
+            dateResolved: new forms_1.FormControl('', [forms_1.Validators.required]),
+            response: new forms_1.FormControl('', [forms_1.Validators.required]),
+            responseConfirm: new forms_1.FormControl('', [forms_1.Validators.required]),
+            responseConfirmDate: new forms_1.FormControl('', [forms_1.Validators.required])
         });
     }
     LogComponent.prototype.test = function () { };
     LogComponent.prototype.changeProject = function (e) {
         this.logForm.patchValue({
-            projectId: e.target.value
+            project: e.target.value
         });
     };
     LogComponent.prototype.changeUsername = function (e) {
         this.logForm.patchValue({
-            UserId: e.target.value
+            user: e.target.value
+        });
+    };
+    LogComponent.prototype.changeActivity = function (e) {
+        this.logForm.patchValue({
+            activity: e.target.value
         });
     };
     LogComponent.prototype.onSubmit = function () {
@@ -86,17 +92,17 @@ var LogComponent = /** @class */ (function () {
         console.log("LogForm Value", this.logForm.value);
         this.logForm.patchValue(value);
         this.logForm.setValue({
-            projectId: value === null || value === void 0 ? void 0 : value.projectId,
-            ActivityId: value === null || value === void 0 ? void 0 : value.ActivityId,
-            UserId: value === null || value === void 0 ? void 0 : value.UserId,
-            Bug: value === null || value === void 0 ? void 0 : value.Bug,
-            ReporterId: value === null || value === void 0 ? void 0 : value.ReporterId,
-            ReportedAt: value === null || value === void 0 ? void 0 : value.ReportedAt,
-            AssignedTo: value === null || value === void 0 ? void 0 : value.AssignedTo,
-            DateResolved: value === null || value === void 0 ? void 0 : value.DateResolved,
-            Response: value === null || value === void 0 ? void 0 : value.Response,
-            ResponseConfirm: value === null || value === void 0 ? void 0 : value.ResponseConfirm,
-            ResponseConfirmDate: value === null || value === void 0 ? void 0 : value.ResponseConfirmDate
+            project: value === null || value === void 0 ? void 0 : value.project,
+            activity: value === null || value === void 0 ? void 0 : value.activity,
+            user: value === null || value === void 0 ? void 0 : value.user,
+            log: value === null || value === void 0 ? void 0 : value.log,
+            reporterId: value === null || value === void 0 ? void 0 : value.reporterId,
+            reportedAt: value === null || value === void 0 ? void 0 : value.reportedAt,
+            assignedTo: value === null || value === void 0 ? void 0 : value.assignedTo,
+            dateResolved: value === null || value === void 0 ? void 0 : value.dateResolved,
+            response: value === null || value === void 0 ? void 0 : value.response,
+            responseConfirm: value === null || value === void 0 ? void 0 : value.responseConfirm,
+            responseConfirmDate: value === null || value === void 0 ? void 0 : value.responseConfirmDate
         });
         this.main = value;
         console.log("LogForm Value ", this.logForm.value);
@@ -112,6 +118,7 @@ var LogComponent = /** @class */ (function () {
     LogComponent.prototype.ngOnInit = function () {
         var _this = this;
         var a = this.http.find('log').subscribe(function (res) {
+            console.log(res);
             _this.data = res;
         });
         this.http.find('project').subscribe(function (res) {
@@ -119,6 +126,9 @@ var LogComponent = /** @class */ (function () {
         });
         this.http.find('users').subscribe(function (res) {
             _this.usersdata = res;
+        });
+        this.http.find('activity').subscribe(function (res) {
+            _this.activitydata = res;
         });
     };
     LogComponent = __decorate([

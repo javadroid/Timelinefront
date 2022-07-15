@@ -4,6 +4,7 @@
   <button mat-raised-button (click)="onClick()" class="demo-button">
     Add Project
   </button>
+{{data | json}}
 
 <app-modal (close)="onClick()" *ngIf="modal">
   <div modalTitle > Activity </div>
@@ -13,9 +14,9 @@
  <div modalInput>
 
   <app-input label="name" [control]="activityForm.controls.name"></app-input>
-  <app-input label="Description" [control]="activityForm.controls.Description"></app-input>
-  <app-input [type]="'date'" label="StartDate" [control]="activityForm.controls.StartDate"></app-input>
-  <app-input [type]="'date'" label="EndDate" [control]="activityForm.controls.EndDate"></app-input>
+  <app-input label="Description" [control]="activityForm.controls.description"></app-input>
+  <app-input [type]="'date'" label="StartDate" [control]="activityForm.controls.startDate"></app-input>
+  <app-input [type]="'date'" label="EndDate" [control]="activityForm.controls.endDate"></app-input>
  </div>
 </app-modal>
 
@@ -26,10 +27,10 @@
  </div>
  <div modalInput>
 
-  <app-input label="name" [control]="activityForm.controls.name"></app-input>
-  <app-input label="Description" [control]="activityForm.controls.Description"></app-input>
-  <app-input [type]="'date'" label="StartDate" [control]="activityForm.controls.StartDate"></app-input>
-  <app-input  [type]="'date'" label="EndDate" [control]="activityForm.controls.EndDate"></app-input>
+  <app-input label="Name" [control]="activityForm.controls.name"></app-input>
+  <app-input label="Description" [control]="activityForm.controls.description"></app-input>
+  <app-input [type]="'date'" label="StartDate" [control]="activityForm.controls.startDate"></app-input>
+  <app-input  [type]="'date'" label="EndDate" [control]="activityForm.controls.endDate"></app-input>
  </div>
 </app-modal>
 
