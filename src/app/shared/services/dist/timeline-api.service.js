@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.TimelineApiService = void 0;
 var core_1 = require("@angular/core");
-var moment = require("moment");
 var rxjs_1 = require("rxjs");
 var TimelineApiService = /** @class */ (function () {
     function TimelineApiService(http) {
@@ -25,11 +24,17 @@ var TimelineApiService = /** @class */ (function () {
     TimelineApiService.prototype.findOne = function (id, rs) {
         return this.http.get('http://localhost:3000/api/' + rs + '/username/' + id);
     };
+    TimelineApiService.prototype.findId = function (id, rs) {
+        return this.http.get('http://localhost:3000/api/' + rs + '/' + id);
+    };
     TimelineApiService.prototype.findOneByPhone = function (id, rs) {
         return this.http.get('http://localhost:3000/api/' + rs + '/phonenumber/' + id);
     };
     TimelineApiService.prototype.findOneByEmail = function (id, rs) {
         return this.http.get('http://localhost:3000/api/' + rs + '/email/' + id);
+    };
+    TimelineApiService.prototype.findOneActivityProject = function (id, rs) {
+        return this.http.get('http://localhost:3000/api/' + rs + '/p/' + id).pipe(rxjs_1.catchError(function (res) { return res; }));
     };
     TimelineApiService.prototype.update = function (_id, details, rs) {
         console.log(details);
@@ -60,29 +65,6 @@ var TimelineApiService = /** @class */ (function () {
         return this.http.post('http://localhost:3000/api/users/login', details).pipe(rxjs_1.tap(function () {
             _this.signedIn$.next(true);
         }));
-    };
-    TimelineApiService.prototype.signOut = function () {
-        localStorage.removeItem('token');
-        localStorage.removeItem('expires');
-    };
-    TimelineApiService.prototype.setLocalStorage = function (res) {
-        var expires = moment().add(res.expiresIn);
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('expires', JSON.stringify(expires.valueOf()));
-    };
-    TimelineApiService.prototype.getExpiration = function () {
-        var expiration = localStorage.getItem('expires');
-        if (expiration) {
-            var expiresAt = JSON.parse(expiration);
-            return moment(expiresAt);
-        }
-        return;
-    };
-    TimelineApiService.prototype.isLoggedIn = function () {
-        return moment().isBefore(this.getExpiration());
-    };
-    TimelineApiService.prototype.isLoggedOut = function () {
-        return !this.isLoggedIn;
     };
     TimelineApiService = __decorate([
         core_1.Injectable({

@@ -68,7 +68,7 @@ var ActivityAssignmentComponent = /** @class */ (function () {
         });
         this.http.create(this.activityassignmentForm.value, 'activityassignment').subscribe(function (res) {
             _this.modal = !_this.modal;
-            //console.log(res);
+            console.log(res);
             _this.activityassignmentForm.reset();
             //window.location.reload();
         });
@@ -111,19 +111,19 @@ var ActivityAssignmentComponent = /** @class */ (function () {
     ActivityAssignmentComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.http.find('activityassignment').subscribe(function (res) {
-            console.log(res);
+            //  console.log(res);
             _this.data = res;
         });
         this.http.find('project').subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.projectdata = res;
         });
         this.http.find('users').subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.usersdata = res;
         });
         this.http.find('activity').subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.activitydata = res;
         });
     };

@@ -12,6 +12,9 @@
  <div modalButton> <button (click)="onSubmit()" class="ui button">Save</button>
  </div>
  <div modalInput>
+  <select formControlName="project" (change)="changeProject($event)" class="ui dropdown">
+    <option *ngFor="let b of projectdata" [value]="b._id">{{b.name}} </option>
+  </select>
 
   <app-input label="name" [control]="activityForm.controls.name"></app-input>
   <app-input label="Description" [control]="activityForm.controls.description"></app-input>

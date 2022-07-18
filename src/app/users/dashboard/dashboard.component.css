@@ -1,0 +1,25 @@
+/* .ui link cards{
+  transition(
+    animation : 'scale',
+    reverse   : 'auto', // default setting
+    interval  : 200
+  )
+} */
+
+.actif{
+  height:100vh;
+  width: 100vw;
+
+
+}
+
+.divOpen + div{
+  width: calc(100% - 100px);
+}
+
+.project{
+  width: 100px;
+  height: 100vh;
+  background: red;
+  transition: width 2s, height 2s, transform 2s;
+}

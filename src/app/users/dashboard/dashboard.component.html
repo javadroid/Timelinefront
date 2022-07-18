@@ -1,1 +1,45 @@
-<p>dashboard works!</p>
+<button>Add Project</button>
+
+<div class="ui link cards">
+  <div *ngFor="let d of data" (click)="onSelect(d)" class="card">
+    <ng-container>
+
+      <div class="image">
+        <!-- <img src="/images/avatar2/large/matthew.png"> -->
+      </div>
+      <div class="content">
+        <div class="header">{{d.name}}</div>
+        <div class="meta">
+          <a>{{d.duration}} day(s) left</a>
+        </div>
+        <div class="description">
+          {{d.description}}
+        </div>
+      </div>
+      <div class="extra content">
+        <span class="right floated">
+          <i class="dollar sign icon"></i>
+          {{d.cost}}
+        </span>
+        <span>
+          <i class="user icon"></i>
+          {{d.rese?.length}} Activity
+        </span>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div *ngIf="act" class="actif">
+  <div  class="ui mini horizontal divided list">
+    <div class="item">
+      <img class="ui avatar image" src="/images/avatar/small/helen.jpg">
+      <div class="content">
+        <div class="header">Helen</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- {{data | json}} -->

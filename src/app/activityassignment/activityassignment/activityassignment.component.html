@@ -4,6 +4,7 @@
     </button>
     {{data | json}}
 
+
     <app-modal (close)="onClick()" *ngIf="modal">
       <div modalTitle> Activity Assignment </div>
       <p>inputs fields</p>
@@ -12,18 +13,18 @@
       <div modalInput>
 
         <select formControlName="project" (change)="changeProject($event)" class="ui dropdown">
-          <option *ngFor="let b of projectdata" [value]="b.name">{{b.name}} </option>
+          <option *ngFor="let b of projectdata" [value]="b._id">{{b.name}} </option>
         </select>
 
         <div>
           <select formControlName="user" (change)="changeUser($event)" class="ui dropdown">
-            <option *ngFor="let b of usersdata" [value]="b.username">{{b.username}} </option>
+            <option *ngFor="let b of usersdata" [value]="b._id">{{b.username}} </option>
           </select>
         </div>
 
         <div>
           <select formControlName="activity" (change)="changeActivity($event)" class="ui dropdown">
-            <option *ngFor="let b of activitydata" [value]="b.name">{{b.name}} </option>
+            <option *ngFor="let b of activitydata" [value]="b._id">{{b.name}} </option>
           </select>
         </div>
 
@@ -53,5 +54,6 @@
   <app-table classNames="striped celled" (emitEdit)="onEdit($event)" [data]="data" [header]="header"
     (emitDelete)='onDelete($event)'>
   </app-table>
+  {{usersdata | json}}
   </div>
 

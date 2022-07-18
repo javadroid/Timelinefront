@@ -16,6 +16,7 @@ export class activityComponent implements OnInit {
 
   dateD = 0;
   header = [
+    { key: 'project', label: 'Project' },
     { key: 'name', label: 'Name' },
     { key: 'description', label: 'Description' },
     { key: 'duration', label: 'Duration (Days)' },
@@ -23,6 +24,7 @@ export class activityComponent implements OnInit {
 
   activityForm = new FormGroup({
     //users form
+    project: new FormControl('',[Validators.required]),
     name: new FormControl('',[Validators.required]),
     description: new FormControl('', [Validators.required]),
     startDate: new FormControl('', [Validators.required]),
@@ -31,6 +33,13 @@ export class activityComponent implements OnInit {
   });
 
   test() {}
+
+  changeProject(e: any) {
+    this.activityForm.patchValue({
+      project: e.target.value,
+    });
+  }
+
 
   onSubmit() {
     const s = this.activityForm.value.startDate;
@@ -83,6 +92,7 @@ export class activityComponent implements OnInit {
   onEdit(value: any) {
     this.modal2 = !this.modal2;
     this.activityForm.setValue({
+      project:value?.project,
       name: value?.name,
       description: value?.description,
       startDate: this.formatDate(value?.startDate),
@@ -107,6 +117,11 @@ export class activityComponent implements OnInit {
     this.http.find('activity').subscribe((res) => {
       this.data = res;
     });
+    this.http.find('project').subscribe((res) => {
+      // console.log(res);
+      this.projectdata = res;
+    });
+
   }
   formatDate(date: Date) {
     if(!date) {

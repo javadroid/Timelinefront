@@ -14,6 +14,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from '../angular-material-module/angular-material-module.module';
 import { MatInputModule } from '@angular/material/input';
+import { ActivitiesComponent } from './dashboard/activities/activities.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MatInputModule } from '@angular/material/input';
     UsersComponent,
     LoginComponent,
     DashboardComponent,
-    LogoutComponent
+    LogoutComponent,
+    ActivitiesComponent
   ],
   imports: [
     CommonModule,

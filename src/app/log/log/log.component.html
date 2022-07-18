@@ -10,14 +10,14 @@
  <div modalInput>
 
   <select formControlName="project"(change)="changeProject($event)"  class="ui dropdown"  >
-    <option  *ngFor="let b of projectdata" [value]="b.name">{{b.name}} </option>
+    <option  *ngFor="let b of projectdata" [value]="b._id">{{b.name}} </option>
   </select>
   <select formControlName="activity" (change)="changeActivity($event)"  class="ui dropdown"  >
-    <option  *ngFor="let b of activitydata" [value]="b.name">{{b.name}} </option>
+    <option  *ngFor="let b of activitydata" [value]="b._id">{{b.name}} </option>
   </select>
 
   <select formControlName="user" (change)="changeUsername($event)"  class="ui dropdown"  >
-    <option  *ngFor="let b of usersdata" [value]="b.username">{{b.username}} </option>
+    <option  *ngFor="let b of usersdata" [value]="b._id">{{b.username}} </option>
   </select>
 
   <app-input label="log" [control]="logForm.controls.log"></app-input>

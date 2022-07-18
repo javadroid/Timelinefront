@@ -19,12 +19,14 @@ var activityComponent = /** @class */ (function () {
         this.main = [];
         this.dateD = 0;
         this.header = [
+            { key: 'project', label: 'Project' },
             { key: 'name', label: 'Name' },
             { key: 'description', label: 'Description' },
             { key: 'duration', label: 'Duration (Days)' },
         ];
         this.activityForm = new forms_1.FormGroup({
             //users form
+            project: new forms_1.FormControl('', [forms_1.Validators.required]),
             name: new forms_1.FormControl('', [forms_1.Validators.required]),
             description: new forms_1.FormControl('', [forms_1.Validators.required]),
             startDate: new forms_1.FormControl('', [forms_1.Validators.required]),
@@ -33,6 +35,11 @@ var activityComponent = /** @class */ (function () {
         });
     }
     activityComponent.prototype.test = function () { };
+    activityComponent.prototype.changeProject = function (e) {
+        this.activityForm.patchValue({
+            project: e.target.value
+        });
+    };
     activityComponent.prototype.onSubmit = function () {
         var _this = this;
         var s = this.activityForm.value.startDate;
@@ -83,6 +90,7 @@ var activityComponent = /** @class */ (function () {
     activityComponent.prototype.onEdit = function (value) {
         this.modal2 = !this.modal2;
         this.activityForm.setValue({
+            project: value === null || value === void 0 ? void 0 : value.project,
             name: value === null || value === void 0 ? void 0 : value.name,
             description: value === null || value === void 0 ? void 0 : value.description,
             startDate: this.formatDate(value === null || value === void 0 ? void 0 : value.startDate),
@@ -103,6 +111,10 @@ var activityComponent = /** @class */ (function () {
         var _this = this;
         this.http.find('activity').subscribe(function (res) {
             _this.data = res;
+        });
+        this.http.find('project').subscribe(function (res) {
+            // console.log(res);
+            _this.projectdata = res;
         });
     };
     activityComponent.prototype.formatDate = function (date) {

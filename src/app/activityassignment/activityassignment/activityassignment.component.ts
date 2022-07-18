@@ -76,7 +76,7 @@ export class ActivityAssignmentComponent implements OnInit {
 
     this.http.create(this.activityassignmentForm.value, 'activityassignment').subscribe((res) => {
       this.modal = !this.modal;
-      //console.log(res);
+      console.log(res);
       this.activityassignmentForm.reset();
       //window.location.reload();
     });
@@ -123,22 +123,22 @@ export class ActivityAssignmentComponent implements OnInit {
 
   ngOnInit(): void {
      this.http.find('activityassignment').subscribe((res) => {
-       console.log(res);
+      //  console.log(res);
       this.data = res;
     });
 
      this.http.find('project').subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.projectdata = res;
     });
 
     this.http.find('users').subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.usersdata = res;
     });
 
     this.http.find('activity').subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.activitydata = res;
     });
 

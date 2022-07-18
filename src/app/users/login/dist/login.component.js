@@ -27,7 +27,7 @@ var LoginComponent = /** @class */ (function () {
         return this.http.signIn(this.loginForm.value).subscribe(function (res) {
             console.log(res);
             localStorage.setItem(_this.TOKEN_NAME, res.token);
-            _this.router.navigate(['./users/dashboard']);
+            _this.router.navigate(['.user/dashboard']);
         });
     };
     Object.defineProperty(LoginComponent.prototype, "token", {

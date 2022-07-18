@@ -18,10 +18,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersRoutingModule } from '../users/users-routing.module';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { ActivitiesComponent } from './activities/activities.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ActivitiesComponent
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
