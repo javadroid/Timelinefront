@@ -1,4 +1,4 @@
-<button>Add Project</button>
+<button (click)="onclick2()" mat-raised-button>Add Project</button>
 
 <div class="ui link cards">
   <div *ngFor="let d of data" (click)="onSelect(d)" class="card">
@@ -8,6 +8,11 @@
         <!-- <img src="/images/avatar2/large/matthew.png"> -->
       </div>
       <div class="content">
+        <div (click)="$event.stopPropagation()">
+          <button (click)="onDelete(d?._id)" mat-raised-button style="float: right;">Delete</button>
+          <button (click)="onEdit(d)" mat-raised-button style="float: right;">Edit</button>
+
+        </div>
         <div class="header">{{d.name}}</div>
         <div class="meta">
           <a>{{d.duration}} day(s) left</a>
@@ -43,3 +48,36 @@
 </div>
 
 <!-- {{data | json}} -->
+
+
+<app-modal (close)="onclick()" *ngIf="modal">
+  <div modalTitle > Projects </div>
+  <p>inputs fields</p>
+ <div modalButton> <button (click)="onUpdate()" class="ui button">Save</button>
+ </div>
+ <div modalInput>
+
+  <app-input label="Name" [control]="projectForm.controls.name"></app-input>
+  <app-input label="Description" [control]="projectForm.controls.description"></app-input>
+  <app-input [type]="'number'" label="cost" [control]="projectForm.controls.cost"></app-input>
+  <app-input [type]="'date'" label="StartDate" [control]="projectForm.controls.startDate"></app-input>
+  <app-input [type]="'date'" label="EndDate" [control]="projectForm.controls.endDate"></app-input>
+ </div>
+
+</app-modal>
+
+<app-modal (close)="onclick2()" *ngIf="modal">
+  <div modalTitle > Projects </div>
+  <p>inputs fields</p>
+ <div modalButton> <button (click)="onSubmit()" class="ui button">Save</button>
+ </div>
+ <div modalInput>
+
+  <app-input label="Name" [control]="projectForm.controls.name"></app-input>
+  <app-input label="Description" [control]="projectForm.controls.description"></app-input>
+  <app-input [type]="'number'" label="cost" [control]="projectForm.controls.cost"></app-input>
+  <app-input [type]="'date'" label="StartDate" [control]="projectForm.controls.startDate"></app-input>
+  <app-input [type]="'date'" label="EndDate" [control]="projectForm.controls.endDate"></app-input>
+ </div>
+
+</app-modal>

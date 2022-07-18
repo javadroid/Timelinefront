@@ -7,10 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 exports.DashboardComponent = void 0;
+var forms_1 = require("@angular/forms");
 var core_1 = require("@angular/core");
 var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(http) {
         this.http = http;
+        this.modal = false;
+        this.dateD = 0;
+        this.modal2 = false;
+        this.main = [];
         this.data = [];
         this.rese = [];
         this.projectdata = [];
@@ -18,9 +23,92 @@ var DashboardComponent = /** @class */ (function () {
         this.assigndata = [];
         this.test = [];
         this.act = false;
+        this.projectForm = new forms_1.FormGroup({
+            //users form
+            name: new forms_1.FormControl('', [forms_1.Validators.required]),
+            description: new forms_1.FormControl('', [forms_1.Validators.required]),
+            cost: new forms_1.FormControl(Number(''), [forms_1.Validators.required]),
+            startDate: new forms_1.FormControl('', [forms_1.Validators.required]),
+            endDate: new forms_1.FormControl('', [forms_1.Validators.required]),
+            duration: new forms_1.FormControl()
+        });
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        this.projectForm.value.cost;
         this.syncProjectActivity();
+    };
+    DashboardComponent.prototype.onclick = function () {
+        this.modal = !this.modal;
+    };
+    DashboardComponent.prototype.onclick2 = function () {
+        this.modal = !this.modal;
+    };
+    DashboardComponent.prototype.onEdit = function (value) {
+        this.modal = !this.modal;
+        this.projectForm.setValue({
+            name: value === null || value === void 0 ? void 0 : value.name,
+            description: value === null || value === void 0 ? void 0 : value.description,
+            cost: value === null || value === void 0 ? void 0 : value.cost,
+            startDate: value === null || value === void 0 ? void 0 : value.startDate,
+            endDate: value === null || value === void 0 ? void 0 : value.endDate,
+            duration: value === null || value === void 0 ? void 0 : value.duration
+        });
+        this.main = value;
+    };
+    DashboardComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var s = this.projectForm.value.startDate;
+        var e = this.projectForm.value.endDate;
+        var start = new Date("" + s);
+        var end = new Date("" + e);
+        if (this.projectForm.invalid) {
+            return;
+        }
+        this.dateD = Number(start.getDate()) - Number(end.getDate());
+        this.projectForm.patchValue({
+            duration: Math.abs(this.dateD)
+        });
+        this.http.create(this.projectForm.value, 'project').subscribe(function (res) {
+            _this.modal = !_this.modal;
+            console.log(res);
+            _this.projectForm.reset();
+            window.location.reload();
+        });
+    };
+    DashboardComponent.prototype.onUpdate = function () {
+        var _a;
+        var s = this.projectForm.value.startDate;
+        var e = this.projectForm.value.endDate;
+        var start = new Date("" + s);
+        var end = new Date("" + e);
+        if (!this.projectForm.valid && !this.main) {
+            console.log('not found');
+            return;
+        }
+        this.dateD = Number(start.getDate()) - Number(end.getDate());
+        this.projectForm.patchValue({
+            duration: Math.abs(this.dateD)
+        });
+        var a = this.http
+            .update((_a = this.main) === null || _a === void 0 ? void 0 : _a._id, [this.projectForm.value], 'project')
+            .subscribe(function (res) { });
+        this.modal2 = !this.modal2;
+        window.location.reload();
+    };
+    DashboardComponent.prototype.onDelete = function (value) {
+        var _this = this;
+        if (!value) {
+            console.log('not found');
+            return;
+        } //console.log(this.http.findOne(this.projectForm.value.id) )
+        this.http["delete"](value, 'project').subscribe(function (res) { });
+        // window.location.reload();
+        this.http.findOneActivityProject(value, 'activity').subscribe(function (res) {
+            for (var i = 0; i < res.length; i++) {
+                // console.log(res[i]._id)
+                _this.http["delete"](res[i]._id, 'activity').subscribe(function (res) { });
+            }
+        });
     };
     DashboardComponent.prototype.onSelect = function (d) {
         this.rese = d.rese;
