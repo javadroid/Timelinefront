@@ -129,7 +129,7 @@ var DashboardComponent = /** @class */ (function () {
                         .subscribe(function (rese) {
                         Object.assign(res[i], { rese: rese });
                         _this.data = res;
-                        // console.log(this.data)
+                        console.log(_this.data);
                     });
                 };
                 for (var i = 0; i < activity.length; i++) {
