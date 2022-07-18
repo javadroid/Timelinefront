@@ -41,7 +41,7 @@ var DashboardComponent = /** @class */ (function () {
         this.modal = !this.modal;
     };
     DashboardComponent.prototype.onclick2 = function () {
-        this.modal = !this.modal;
+        this.modal2 = !this.modal2;
     };
     DashboardComponent.prototype.onEdit = function (value) {
         this.modal = !this.modal;
@@ -89,11 +89,11 @@ var DashboardComponent = /** @class */ (function () {
         this.projectForm.patchValue({
             duration: Math.abs(this.dateD)
         });
-        var a = this.http
+        this.http
             .update((_a = this.main) === null || _a === void 0 ? void 0 : _a._id, [this.projectForm.value], 'project')
-            .subscribe(function (res) { });
-        this.modal2 = !this.modal2;
-        window.location.reload();
+            .subscribe(function (res) { console.log(res); });
+        this.modal = !this.modal;
+        // window.location.reload();
     };
     DashboardComponent.prototype.onDelete = function (value) {
         var _this = this;

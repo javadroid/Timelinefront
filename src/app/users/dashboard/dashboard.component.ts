@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
     this.modal = !this.modal;
   }
   onclick2(){
-    this.modal = !this.modal;
+    this.modal2 = !this.modal2;
   }
   onEdit(value:any) {
     this.modal = !this.modal;
@@ -94,11 +94,11 @@ const s = this.projectForm.value.startDate;
     this.projectForm.patchValue({
       duration: Math.abs(this.dateD),
     });
-    const a = this.http
+    this.http
       .update(this.main?._id, [this.projectForm.value], 'project')
-      .subscribe((res) => {});
-    this.modal2 = !this.modal2;
-    window.location.reload();
+      .subscribe((res) => {console.log(res)});
+    this.modal = !this.modal;
+    // window.location.reload();
   }
 
   onDelete(value:any){
